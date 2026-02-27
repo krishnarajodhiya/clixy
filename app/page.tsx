@@ -1,211 +1,77 @@
 import Link from "next/link";
-import {
-  Link2,
-  BarChart3,
-  Globe,
-  Smartphone,
-  Zap,
-  Shield,
-  ArrowRight,
-  CheckCircle,
-  MousePointerClick,
-} from "lucide-react";
+import { Link2, ArrowRight } from "lucide-react";
+import HeroText from "@/components/landing/HeroText";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen bg-[#0d0d0c] text-[#f4f2e9] font-sans selection:bg-[#ff6b4a] selection:text-white pb-32">
       {/* Navbar */}
-      <nav className="border-b border-gray-100 sticky top-0 bg-white/95 backdrop-blur-sm z-20">
-        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+      <nav className="absolute top-0 w-full z-20">
+        <div className="max-w-[1400px] mx-auto px-6 h-24 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-md bg-blue-600 flex items-center justify-center">
-              <Link2 className="w-3.5 h-3.5 text-white" />
+            <div className="px-3 py-1.5 bg-[#f4f2e9] text-[#0d0d0c] rounded uppercase font-black tracking-tight transform -skew-y-2 border-2 border-dashed border-[#0d0d0c] shadow-[4px_4px_0_#ff6b4a] text-lg">
+              CLIXY™
             </div>
-            <span className="text-base font-semibold tracking-tight text-gray-900">
-              Clixy
-            </span>
           </Link>
-          <div className="flex items-center gap-2">
+
+          <div className="hidden md:flex items-center gap-10 text-sm font-medium tracking-wide text-gray-400 uppercase">
+            <Link href="#features" className="hover:text-white transition-colors">Features</Link>
+            <Link href="#stats" className="hover:text-white transition-colors">Analytics</Link>
+            <Link href="#pricing" className="hover:text-white transition-colors">Pricing</Link>
+          </div>
+
+          <div className="flex items-center gap-6">
             <Link
               href="/login"
-              className="px-4 py-1.5 text-sm text-gray-600 hover:text-gray-900 transition-colors font-medium"
+              className="text-sm font-medium hover:text-white uppercase transition-colors"
             >
-              Sign in
+              Login
             </Link>
             <Link
               href="/signup"
-              className="px-4 py-1.5 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+              className="hidden sm:inline-block px-5 py-2.5 text-sm font-bold bg-transparent border-2 border-[#f4f2e9] text-[#f4f2e9] rounded-full hover:bg-[#f4f2e9] hover:text-[#0d0d0c] transition-all uppercase tracking-wide"
             >
-              Get started
+              Start Free
             </Link>
           </div>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="max-w-6xl mx-auto px-6 pt-24 pb-20 text-center">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-medium border border-blue-100 mb-7">
-          <Zap className="w-3 h-3" />
-          Free to start — no credit card
+      <section className="relative pt-32 lg:pt-40 flex flex-col items-center text-center overflow-hidden">
+        {/* Subtle starry background overlay */}
+        <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+
+        <div className="w-full relative z-10 px-4">
+          <HeroText firstLine="LET'S TRACK" secondLine="YOUR CLICKS" />
         </div>
 
-        <h1 className="text-5xl sm:text-6xl font-bold tracking-tight leading-tight text-gray-900 mb-5">
-          Smart link tracking
-          <br />
-          for influencers
-        </h1>
-
-        <p className="text-lg text-gray-500 max-w-xl mx-auto mb-10 leading-relaxed">
-          Create short tracking links. Know exactly where your clicks come from —
-          platform, device, country — and act on it.
+        <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mt-6 mb-10 leading-relaxed z-10 font-medium px-4">
+          Turn <span className="text-[#f4f2e9] font-bold">Links into Insights</span> and <span className="text-[#f4f2e9] font-bold">Clicks into Growth</span> — with powerful tracking analytics.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <div className="z-10 relative group">
+          <div className="absolute inset-0 bg-[#2dec59] blur-xl opacity-30 group-hover:opacity-60 transition-opacity duration-500 rounded-full" />
           <Link
             href="/signup"
-            className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium text-sm transition-colors"
+            className="flex items-center gap-2 px-8 py-4 bg-[#2dec59] hover:bg-[#28d750] text-[#0d0d0c] rounded-full font-black text-lg transition-transform hover:scale-105 active:scale-95 uppercase tracking-wide"
           >
-            Start tracking free
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-          <Link
-            href="/login"
-            className="flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 hover:border-gray-300 text-gray-700 rounded-lg font-medium text-sm transition-colors"
-          >
-            Sign in
+            Start Tracking Now
           </Link>
         </div>
       </section>
 
-      {/* Stats strip */}
-      <section className="border-y border-gray-100 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-          {stats.map((s) => (
-            <div key={s.label}>
-              <p className="text-2xl font-bold text-gray-900">{s.value}</p>
-              <p className="text-sm text-gray-500 mt-0.5">{s.label}</p>
+      {/* Logos Marquee Overlay Placeholder */}
+      <section className="mt-32 w-full overflow-hidden border-t border-white/5 pt-12">
+        <div className="flex max-w-[1400px] mx-auto px-6 opacity-40 justify-between items-center grayscale gap-8 flex-wrap">
+          {["Instagram", "YouTube", "TikTok", "Snapchat", "WhatsApp", "Facebook"].map(platform => (
+            <div key={platform} className="text-2xl font-bold uppercase tracking-tight text-white hover:text-[#ff6b4a] hover:grayscale-0 transition-all cursor-crosshair">
+              {platform}
             </div>
           ))}
         </div>
       </section>
 
-      {/* Features */}
-      <section className="max-w-6xl mx-auto px-6 py-20">
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            Everything you need, nothing you don't
-          </h2>
-          <p className="text-gray-500 text-sm">
-            Built for influencers working across multiple platforms.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {features.map((f) => (
-            <div key={f.title} className="card card-hover p-5 rounded-xl">
-              <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center mb-4">
-                <f.icon className="w-4.5 h-4.5 text-blue-600" />
-              </div>
-              <h3 className="text-sm font-semibold text-gray-900 mb-1.5">{f.title}</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">{f.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="max-w-6xl mx-auto px-6 pb-20">
-        <div className="border border-gray-200 rounded-2xl p-10 text-center bg-gray-50">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            Start for free today
-          </h2>
-          <p className="text-gray-500 text-sm mb-6 max-w-md mx-auto">
-            Full analytics on every click. Deployed on Supabase and Vercel.
-            No cost on the starter plan.
-          </p>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-8 max-w-xl mx-auto text-left">
-            {perks.map((p) => (
-              <div key={p} className="flex items-center gap-1.5 text-xs text-gray-600">
-                <CheckCircle className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
-                {p}
-              </div>
-            ))}
-          </div>
-
-          <Link
-            href="/signup"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium text-sm transition-colors"
-          >
-            Create free account
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-gray-100 py-6">
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between text-xs text-gray-400">
-          <div className="flex items-center gap-2">
-            <div className="w-5 h-5 rounded bg-blue-600 flex items-center justify-center">
-              <Link2 className="w-2.5 h-2.5 text-white" />
-            </div>
-            <span className="font-medium text-gray-500">Clixy</span>
-          </div>
-          <span>Built with Next.js + Supabase</span>
-        </div>
-      </footer>
     </div>
   );
 }
-
-const stats = [
-  { value: "< 1ms", label: "Redirect latency" },
-  { value: "9+", label: "Platform detections" },
-  { value: "100%", label: "Free to start" },
-  { value: "0", label: "Scripts injected" },
-];
-
-const features = [
-  {
-    icon: Link2,
-    title: "Short tracking links",
-    desc: "Custom slugs or auto-generated. Clean URLs that don't expose your destination.",
-  },
-  {
-    icon: BarChart3,
-    title: "Click analytics",
-    desc: "Platform, device, country breakdown on every click. Real data, not estimates.",
-  },
-  {
-    icon: Globe,
-    title: "Country detection",
-    desc: "See where in the world your audience is. Powered by Vercel edge headers.",
-  },
-  {
-    icon: Smartphone,
-    title: "Device breakdown",
-    desc: "Mobile vs desktop split so you know how your audience consumes content.",
-  },
-  {
-    icon: Zap,
-    title: "302 redirects",
-    desc: "Pure server-side redirects. No iframes, no injected scripts, fully compliant.",
-  },
-  {
-    icon: Shield,
-    title: "Works everywhere",
-    desc: "YouTube, Instagram, Amazon, TikTok. No platform will block your links.",
-  },
-];
-
-const perks = [
-  "Unlimited links",
-  "Click analytics",
-  "Country data",
-  "Custom slugs",
-  "UTM support",
-  "Device split",
-  "Auth protected",
-  "Free hosting",
-];
