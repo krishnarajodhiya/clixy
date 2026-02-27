@@ -8,7 +8,6 @@ import {
     Plus,
     LogOut,
     ChevronRight,
-    BarChart3,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
@@ -31,21 +30,21 @@ export default function Sidebar() {
     }
 
     return (
-        <aside className="fixed inset-y-0 left-0 z-20 w-60 flex flex-col bg-gray-900/80 backdrop-blur border-r border-gray-800/60">
+        <aside className="fixed inset-y-0 left-0 z-20 w-56 flex flex-col bg-white border-r border-gray-100">
             {/* Logo */}
-            <div className="h-16 flex items-center px-5 border-b border-gray-800/60">
-                <Link href="/dashboard" className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center shadow-lg shadow-violet-500/20">
-                        <Link2 className="w-4 h-4 text-white" />
+            <div className="h-14 flex items-center px-5 border-b border-gray-100">
+                <Link href="/dashboard" className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-md bg-blue-600 flex items-center justify-center">
+                        <Link2 className="w-3.5 h-3.5 text-white" />
                     </div>
-                    <span className="text-lg font-bold gradient-text">LinkTrack</span>
+                    <span className="text-sm font-semibold text-gray-900">LinkTrack</span>
                 </Link>
             </div>
 
             {/* Nav */}
-            <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
-                <p className="px-3 py-1.5 text-xs font-semibold text-gray-500 uppercase tracking-widest">
-                    Navigation
+            <nav className="flex-1 overflow-y-auto py-3 px-3 space-y-0.5">
+                <p className="px-2 py-2 text-[10px] font-semibold text-gray-400 uppercase tracking-widest">
+                    Menu
                 </p>
                 {navItems.map((item) => {
                     const active =
@@ -57,44 +56,29 @@ export default function Sidebar() {
                             key={item.href}
                             href={item.href}
                             className={cn(
-                                "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
+                                "flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-sm font-medium transition-colors",
                                 active
-                                    ? "bg-violet-600/20 text-violet-300 border border-violet-500/20"
-                                    : "text-gray-400 hover:text-white hover:bg-gray-800/60"
+                                    ? "bg-blue-50 text-blue-700"
+                                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                             )}
                         >
-                            <item.icon className="w-4 h-4 flex-shrink-0" />
+                            <item.icon className={cn("w-4 h-4", active ? "text-blue-600" : "text-gray-400")} />
                             {item.label}
-                            {active && <ChevronRight className="w-3 h-3 ml-auto" />}
+                            {active && <ChevronRight className="w-3 h-3 ml-auto text-blue-400" />}
                         </Link>
                     );
                 })}
             </nav>
 
-            {/* Analytics note */}
-            <div className="px-4 pb-3">
-                <div className="rounded-xl bg-violet-600/10 border border-violet-500/15 p-3">
-                    <div className="flex items-center gap-2 mb-1">
-                        <BarChart3 className="w-4 h-4 text-violet-400" />
-                        <span className="text-xs font-semibold text-violet-300">
-                            Analytics
-                        </span>
-                    </div>
-                    <p className="text-xs text-gray-400">
-                        Click any link to view detailed analytics.
-                    </p>
-                </div>
-            </div>
-
             {/* Logout */}
-            <div className="p-3 border-t border-gray-800/60">
+            <div className="p-3 border-t border-gray-100">
                 <button
                     id="sidebar-logout"
                     onClick={handleLogout}
-                    className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium text-gray-400 hover:text-red-400 hover:bg-red-500/10 transition-all duration-200"
+                    className="flex items-center gap-2.5 w-full px-2.5 py-2 rounded-lg text-sm font-medium text-gray-500 hover:text-red-600 hover:bg-red-50 transition-colors"
                 >
                     <LogOut className="w-4 h-4" />
-                    Sign Out
+                    Sign out
                 </button>
             </div>
         </aside>

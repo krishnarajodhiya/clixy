@@ -1,186 +1,211 @@
 import Link from "next/link";
 import {
-  BarChart3,
   Link2,
+  BarChart3,
   Globe,
   Smartphone,
   Zap,
   Shield,
   ArrowRight,
   CheckCircle,
+  MousePointerClick,
 } from "lucide-react";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gray-950 text-white overflow-x-hidden">
-      {/* Background gradient blobs */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-violet-600/10 blur-[120px]" />
-        <div className="absolute top-1/2 -left-40 w-96 h-96 rounded-full bg-blue-600/10 blur-[120px]" />
-        <div className="absolute -bottom-40 right-1/3 w-96 h-96 rounded-full bg-emerald-600/8 blur-[120px]" />
-      </div>
-
+    <div className="min-h-screen bg-white text-gray-900">
       {/* Navbar */}
-      <nav className="relative z-10 flex items-center justify-between px-6 py-5 max-w-7xl mx-auto">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
-            <Link2 className="w-4 h-4 text-white" />
+      <nav className="border-b border-gray-100 sticky top-0 bg-white/95 backdrop-blur-sm z-20">
+        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-md bg-blue-600 flex items-center justify-center">
+              <Link2 className="w-3.5 h-3.5 text-white" />
+            </div>
+            <span className="text-base font-semibold tracking-tight text-gray-900">
+              LinkTrack
+            </span>
+          </Link>
+          <div className="flex items-center gap-2">
+            <Link
+              href="/login"
+              className="px-4 py-1.5 text-sm text-gray-600 hover:text-gray-900 transition-colors font-medium"
+            >
+              Sign in
+            </Link>
+            <Link
+              href="/signup"
+              className="px-4 py-1.5 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+            >
+              Get started
+            </Link>
           </div>
-          <span className="text-xl font-bold gradient-text">LinkTrack</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <Link
-            href="/login"
-            className="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors"
-          >
-            Sign In
-          </Link>
-          <Link
-            href="/signup"
-            className="px-4 py-2 text-sm bg-violet-600 hover:bg-violet-500 text-white rounded-lg font-medium transition-all hover:scale-[1.02] active:scale-[0.98]"
-          >
-            Get Started Free
-          </Link>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative z-10 text-center px-6 pt-20 pb-32 max-w-5xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 text-xs font-medium mb-6">
+      {/* Hero */}
+      <section className="max-w-6xl mx-auto px-6 pt-24 pb-20 text-center">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-medium border border-blue-100 mb-7">
           <Zap className="w-3 h-3" />
-          Free tier — No credit card required
+          Free to start — no credit card
         </div>
 
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6">
-          Smart Link Tracking for{" "}
-          <span className="gradient-text">Influencers</span>
+        <h1 className="text-5xl sm:text-6xl font-bold tracking-tight leading-tight text-gray-900 mb-5">
+          Smart link tracking
+          <br />
+          for influencers
         </h1>
 
-        <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Create trackable short links, capture deep analytics on every click —
-          platform, device, country — and grow smarter with real data.
+        <p className="text-lg text-gray-500 max-w-xl mx-auto mb-10 leading-relaxed">
+          Create short tracking links. Know exactly where your clicks come from —
+          platform, device, country — and act on it.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             href="/signup"
-            className="flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-500 hover:to-blue-500 text-white rounded-xl font-semibold text-lg transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-violet-500/20"
+            className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium text-sm transition-colors"
           >
-            Start Tracking Free
-            <ArrowRight className="w-5 h-5" />
+            Start tracking free
+            <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
             href="/login"
-            className="flex items-center gap-2 px-8 py-4 bg-gray-800 hover:bg-gray-700 text-gray-200 rounded-xl font-semibold text-lg transition-all hover:scale-[1.02] active:scale-[0.98] border border-gray-700"
+            className="flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 hover:border-gray-300 text-gray-700 rounded-lg font-medium text-sm transition-colors"
           >
-            Sign In
+            Sign in
           </Link>
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="relative z-10 px-6 pb-24 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-3">
-            Everything you need to track smarter
-          </h2>
-          <p className="text-gray-400">
-            Powerful analytics with zero complexity
-          </p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((f) => (
-            <div
-              key={f.title}
-              className="glass-card rounded-2xl p-6 hover:border-violet-500/20 transition-all duration-300 hover:-translate-y-1 group"
-            >
-              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-violet-600/30 to-blue-600/30 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <f.icon className="w-5 h-5 text-violet-300" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">{f.title}</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
+      {/* Stats strip */}
+      <section className="border-y border-gray-100 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          {stats.map((s) => (
+            <div key={s.label}>
+              <p className="text-2xl font-bold text-gray-900">{s.value}</p>
+              <p className="text-sm text-gray-500 mt-0.5">{s.label}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Pricing / CTA */}
-      <section className="relative z-10 px-6 pb-24 max-w-3xl mx-auto text-center">
-        <div className="glass rounded-3xl p-10 gradient-border">
-          <h2 className="text-3xl font-bold mb-4">Start free. Scale later.</h2>
-          <p className="text-gray-400 mb-8">
-            All core features included on the free tier. Built on Supabase +
-            Vercel for zero-cost deployment.
+      {/* Features */}
+      <section className="max-w-6xl mx-auto px-6 py-20">
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            Everything you need, nothing you don't
+          </h2>
+          <p className="text-gray-500 text-sm">
+            Built for influencers working across multiple platforms.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left mb-8">
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {features.map((f) => (
+            <div key={f.title} className="card card-hover p-5 rounded-xl">
+              <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center mb-4">
+                <f.icon className="w-4.5 h-4.5 text-blue-600" />
+              </div>
+              <h3 className="text-sm font-semibold text-gray-900 mb-1.5">{f.title}</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="max-w-6xl mx-auto px-6 pb-20">
+        <div className="border border-gray-200 rounded-2xl p-10 text-center bg-gray-50">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            Start for free today
+          </h2>
+          <p className="text-gray-500 text-sm mb-6 max-w-md mx-auto">
+            Full analytics on every click. Deployed on Supabase and Vercel.
+            No cost on the starter plan.
+          </p>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-8 max-w-xl mx-auto text-left">
             {perks.map((p) => (
-              <div key={p} className="flex items-center gap-2 text-sm text-gray-300">
-                <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+              <div key={p} className="flex items-center gap-1.5 text-xs text-gray-600">
+                <CheckCircle className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
                 {p}
               </div>
             ))}
           </div>
+
           <Link
             href="/signup"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-500 hover:to-blue-500 text-white rounded-xl font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium text-sm transition-colors"
           >
-            Create Your Free Account
+            Create free account
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-gray-800/50 py-8 text-center text-gray-500 text-sm">
-        <p>
-          Built with Next.js, Supabase & Tailwind CSS ·{" "}
-          <span className="text-violet-400">LinkTrack</span>
-        </p>
+      <footer className="border-t border-gray-100 py-6">
+        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between text-xs text-gray-400">
+          <div className="flex items-center gap-2">
+            <div className="w-5 h-5 rounded bg-blue-600 flex items-center justify-center">
+              <Link2 className="w-2.5 h-2.5 text-white" />
+            </div>
+            <span className="font-medium text-gray-500">LinkTrack</span>
+          </div>
+          <span>Built with Next.js + Supabase</span>
+        </div>
       </footer>
     </div>
   );
 }
 
+const stats = [
+  { value: "< 1ms", label: "Redirect latency" },
+  { value: "9+", label: "Platform detections" },
+  { value: "100%", label: "Free to start" },
+  { value: "0", label: "Scripts injected" },
+];
+
 const features = [
   {
     icon: Link2,
-    title: "Smart Short Links",
-    desc: "Generate custom slugs or let us auto-create them. Attach UTM parameters for campaign tracking.",
+    title: "Short tracking links",
+    desc: "Custom slugs or auto-generated. Clean URLs that don't expose your destination.",
   },
   {
     icon: BarChart3,
-    title: "Deep Analytics",
-    desc: "Track clicks by platform, device, country, and time. Visualize trends with beautiful charts.",
+    title: "Click analytics",
+    desc: "Platform, device, country breakdown on every click. Real data, not estimates.",
   },
   {
     icon: Globe,
-    title: "Country Detection",
-    desc: "See exactly where in the world your audience is clicking from with IP-based geolocation.",
+    title: "Country detection",
+    desc: "See where in the world your audience is. Powered by Vercel edge headers.",
   },
   {
     icon: Smartphone,
-    title: "Device Breakdown",
-    desc: "Understand your mobile vs desktop split to optimize your content strategy.",
+    title: "Device breakdown",
+    desc: "Mobile vs desktop split so you know how your audience consumes content.",
   },
   {
     icon: Zap,
-    title: "Instant Redirects",
-    desc: "302 redirects are processed server-side in milliseconds. No JS injection, no iframes.",
+    title: "302 redirects",
+    desc: "Pure server-side redirects. No iframes, no injected scripts, fully compliant.",
   },
   {
     icon: Shield,
-    title: "Safe & Compliant",
-    desc: "No scripts injected into destinations. Works safely with YouTube, Instagram, Amazon and more.",
+    title: "Works everywhere",
+    desc: "YouTube, Instagram, Amazon, TikTok. No platform will block your links.",
   },
 ];
 
 const perks = [
-  "Unlimited tracking links",
-  "Click analytics dashboard",
-  "Platform & device breakdown",
-  "Country geolocation",
-  "UTM parameter support",
+  "Unlimited links",
+  "Click analytics",
+  "Country data",
   "Custom slugs",
-  "Protected dashboard",
-  "Free Supabase + Vercel hosting",
+  "UTM support",
+  "Device split",
+  "Auth protected",
+  "Free hosting",
 ];

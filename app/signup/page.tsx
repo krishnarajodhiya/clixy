@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Link2, Mail, Lock, Eye, EyeOff, Loader2, User } from "lucide-react";
+import { Link2, Mail, Lock, Eye, EyeOff, Loader2, CheckCircle } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 export default function SignupPage() {
@@ -57,17 +57,21 @@ export default function SignupPage() {
 
     if (success) {
         return (
-            <div className="min-h-screen bg-gray-950 flex items-center justify-center px-4">
-                <div className="glass rounded-2xl p-10 max-w-md w-full text-center animate-fade-in">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center mx-auto mb-4">
-                        <User className="w-8 h-8 text-white" />
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+                <div className="card rounded-xl p-8 max-w-sm w-full text-center animate-fade-up">
+                    <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-4">
+                        <CheckCircle className="w-6 h-6 text-blue-600" />
                     </div>
-                    <h2 className="text-2xl font-bold text-white mb-2">Check your email!</h2>
-                    <p className="text-gray-400">
-                        We sent a confirmation link to <strong className="text-white">{email}</strong>. Click it to activate your account.
+                    <h2 className="text-lg font-bold text-gray-900 mb-1">Check your inbox</h2>
+                    <p className="text-sm text-gray-500 mb-5">
+                        We sent a confirmation link to{" "}
+                        <span className="font-medium text-gray-900">{email}</span>.
                     </p>
-                    <Link href="/login" className="inline-block mt-6 text-violet-400 hover:text-violet-300 text-sm font-medium">
-                        Back to Sign In
+                    <Link
+                        href="/login"
+                        className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                    >
+                        Back to sign in
                     </Link>
                 </div>
             </div>
@@ -75,121 +79,112 @@ export default function SignupPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gray-950 flex items-center justify-center px-4">
-            {/* Background blobs */}
-            <div className="fixed inset-0 pointer-events-none">
-                <div className="absolute top-1/4 -right-32 w-80 h-80 rounded-full bg-violet-600/10 blur-[100px]" />
-                <div className="absolute bottom-1/4 -left-32 w-80 h-80 rounded-full bg-blue-600/10 blur-[100px]" />
+        <div className="min-h-screen bg-gray-50 flex flex-col">
+            {/* Top bar */}
+            <div className="px-6 py-4 border-b border-gray-100 bg-white">
+                <Link href="/" className="flex items-center gap-2 w-fit">
+                    <div className="w-7 h-7 rounded-md bg-blue-600 flex items-center justify-center">
+                        <Link2 className="w-3.5 h-3.5 text-white" />
+                    </div>
+                    <span className="text-sm font-semibold text-gray-900">LinkTrack</span>
+                </Link>
             </div>
 
-            <div className="relative w-full max-w-md animate-fade-in">
-                {/* Logo */}
-                <div className="text-center mb-8">
-                    <Link href="/" className="inline-flex items-center gap-2 mb-6">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
-                            <Link2 className="w-5 h-5 text-white" />
-                        </div>
-                        <span className="text-2xl font-bold gradient-text">LinkTrack</span>
-                    </Link>
-                    <h1 className="text-2xl font-bold text-white">Create your account</h1>
-                    <p className="text-gray-400 mt-1 text-sm">Free forever on the starter plan</p>
-                </div>
+            <div className="flex-1 flex items-center justify-center px-4 py-12">
+                <div className="w-full max-w-sm animate-fade-up">
+                    <div className="mb-7">
+                        <h1 className="text-xl font-bold text-gray-900">Create your account</h1>
+                        <p className="text-sm text-gray-500 mt-1">
+                            Already have an account?{" "}
+                            <Link href="/login" className="text-blue-600 hover:text-blue-700 font-medium">
+                                Sign in
+                            </Link>
+                        </p>
+                    </div>
 
-                {/* Card */}
-                <div className="glass rounded-2xl p-8">
-                    <form onSubmit={handleSubmit} className="space-y-5">
-                        {/* Email */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-1.5">
-                                Email address
-                            </label>
-                            <div className="relative">
-                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                                <input
-                                    id="signup-email"
-                                    type="email"
-                                    required
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    placeholder="you@example.com"
-                                    className="w-full pl-10 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500/50 transition-all"
-                                />
+                    <div className="card rounded-xl p-6">
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                            <div>
+                                <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                                    Email address
+                                </label>
+                                <div className="relative">
+                                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                                    <input
+                                        id="signup-email"
+                                        type="email"
+                                        required
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder="you@example.com"
+                                        className="input-base w-full pl-9 pr-3 py-2.5 text-sm"
+                                    />
+                                </div>
                             </div>
-                        </div>
 
-                        {/* Password */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-1.5">
-                                Password
-                            </label>
-                            <div className="relative">
-                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                                <input
-                                    id="signup-password"
-                                    type={showPassword ? "text" : "password"}
-                                    required
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    placeholder="Min. 6 characters"
-                                    className="w-full pl-10 pr-12 py-3 bg-gray-900 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500/50 transition-all"
-                                />
-                                <button
-                                    type="button"
-                                    onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors"
-                                >
-                                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                                </button>
+                            <div>
+                                <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                                    Password
+                                </label>
+                                <div className="relative">
+                                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                                    <input
+                                        id="signup-password"
+                                        type={showPassword ? "text" : "password"}
+                                        required
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        placeholder="Min. 6 characters"
+                                        className="input-base w-full pl-9 pr-10 py-2.5 text-sm"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                    >
+                                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                                    </button>
+                                </div>
                             </div>
-                        </div>
 
-                        {/* Confirm Password */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-1.5">
-                                Confirm Password
-                            </label>
-                            <div className="relative">
-                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                                <input
-                                    id="signup-confirm-password"
-                                    type={showPassword ? "text" : "password"}
-                                    required
-                                    value={confirmPassword}
-                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                    placeholder="Re-enter password"
-                                    className="w-full pl-10 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500/50 transition-all"
-                                />
+                            <div>
+                                <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                                    Confirm password
+                                </label>
+                                <div className="relative">
+                                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                                    <input
+                                        id="signup-confirm-password"
+                                        type={showPassword ? "text" : "password"}
+                                        required
+                                        value={confirmPassword}
+                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                        placeholder="Re-enter password"
+                                        className="input-base w-full pl-9 pr-3 py-2.5 text-sm"
+                                    />
+                                </div>
                             </div>
-                        </div>
 
-                        {/* Error */}
-                        {error && (
-                            <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
-                                {error}
-                            </div>
-                        )}
-
-                        {/* Submit */}
-                        <button
-                            id="signup-submit"
-                            type="submit"
-                            disabled={loading}
-                            className="w-full py-3 bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-500 hover:to-blue-500 disabled:opacity-60 text-white rounded-xl font-semibold transition-all flex items-center justify-center gap-2"
-                        >
-                            {loading ? (
-                                <><Loader2 className="w-4 h-4 animate-spin" /> Creating account…</>
-                            ) : (
-                                "Create Free Account"
+                            {error && (
+                                <p className="text-xs text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">
+                                    {error}
+                                </p>
                             )}
-                        </button>
-                    </form>
 
-                    <p className="text-center text-sm text-gray-400 mt-6">
-                        Already have an account?{" "}
-                        <Link href="/login" className="text-violet-400 hover:text-violet-300 font-medium">
-                            Sign in
-                        </Link>
-                    </p>
+                            <button
+                                id="signup-submit"
+                                type="submit"
+                                disabled={loading}
+                                className="btn-primary w-full py-2.5 text-sm flex items-center justify-center gap-2 disabled:opacity-60"
+                            >
+                                {loading ? (
+                                    <><Loader2 className="w-4 h-4 animate-spin" /> Creating account…</>
+                                ) : (
+                                    "Create account"
+                                )}
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
