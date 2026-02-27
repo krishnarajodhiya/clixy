@@ -29,13 +29,14 @@ export default function LoginPage() {
 
             if (error) {
                 setError(error.message);
+                setLoading(false);
             } else {
+                // Success - do not reset loading so the spinner stays while Next.js routes
                 router.push("/dashboard");
                 router.refresh();
             }
         } catch (err: unknown) {
             setError(err instanceof Error ? err.message : "Failed to connect. Please try again.");
-        } finally {
             setLoading(false);
         }
     }

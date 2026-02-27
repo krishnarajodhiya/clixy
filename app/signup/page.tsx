@@ -45,37 +45,16 @@ export default function SignupPage() {
 
             if (error) {
                 setError(error.message);
+                setLoading(false);
             } else {
-                setSuccess(true);
+                // Success - redirect immediately without clearing loading
+                router.push("/dashboard");
+                router.refresh();
             }
         } catch (err: unknown) {
             setError(err instanceof Error ? err.message : "Failed to connect. Please try again.");
-        } finally {
             setLoading(false);
         }
-    }
-
-    if (success) {
-        return (
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-                <div className="card rounded-xl p-8 max-w-sm w-full text-center animate-fade-up">
-                    <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-4">
-                        <CheckCircle className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <h2 className="text-lg font-bold text-gray-900 mb-1">Check your inbox</h2>
-                    <p className="text-sm text-gray-500 mb-5">
-                        We sent a confirmation link to{" "}
-                        <span className="font-medium text-gray-900">{email}</span>.
-                    </p>
-                    <Link
-                        href="/login"
-                        className="text-sm text-blue-600 hover:text-blue-700 font-medium"
-                    >
-                        Back to sign in
-                    </Link>
-                </div>
-            </div>
-        );
     }
 
     return (
