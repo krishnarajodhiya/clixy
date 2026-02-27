@@ -23,6 +23,9 @@ export async function createClient() {
                     }
                 },
             },
+            cookieOptions: {
+                name: 'sb-clixy-auth-token',
+            }
         }
     );
 }

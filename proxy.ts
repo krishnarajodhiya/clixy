@@ -22,6 +22,9 @@ export async function proxy(request: NextRequest) {
                     );
                 },
             },
+            cookieOptions: {
+                name: 'sb-clixy-auth-token',
+            }
         }
     );
 
