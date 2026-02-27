@@ -36,8 +36,8 @@ export function getPlatformFromReferrer(referrer: string | null, userAgent?: str
     if (userAgent) {
         const ua = userAgent.toLowerCase();
         if (ua.includes("whatsapp")) return "WhatsApp";
-        if (ua.includes("instagram")) return "Instagram";
-        if (ua.includes("fban") || ua.includes("fbios")) return "Facebook";
+        if (ua.includes("instagram")) return "FB / Instagram";
+        if (ua.includes("fban") || ua.includes("fbios")) return "FB / Instagram";
         if (ua.includes("tiktok")) return "TikTok";
         if (ua.includes("snapchat")) return "Snapchat";
         if (ua.includes("twitter") || ua.includes("twitter")) return "Twitter";
@@ -52,11 +52,11 @@ export function getPlatformFromReferrer(referrer: string | null, userAgent?: str
     try {
         const url = new URL(referrer);
         const hostname = url.hostname.toLowerCase();
-        if (hostname.includes("instagram")) return "Instagram";
+        if (hostname.includes("instagram")) return "FB / Instagram";
         if (hostname.includes("youtube") || hostname.includes("youtu.be"))
             return "YouTube";
         if (hostname.includes("facebook") || hostname.includes("fb.com"))
-            return "Facebook";
+            return "FB / Instagram";
         if (hostname.includes("twitter") || hostname.includes("x.com") || hostname.includes("t.co"))
             return "Twitter";
         if (hostname.includes("tiktok")) return "TikTok";
