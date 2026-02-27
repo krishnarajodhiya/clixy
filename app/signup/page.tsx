@@ -31,19 +31,26 @@ export default function SignupPage() {
 
         setLoading(true);
         const supabase = createClient();
-        const { error } = await supabase.auth.signUp({
-            email,
-            password,
-            options: {
-                emailRedirectTo: `${window.location.origin}/dashboard`,
-            },
-        });
 
-        if (error) {
-            setError(error.message);
-            setLoading(false);
-        } else {
-            setSuccess(true);
+        try {
+            const timeout = new Promise<never>((_, reject) =>
+                setTimeout(() => reject(new Error("Connection timed out. Supabase may be starting up — try again in 30 seconds.")), 8000)
+            );
+            const signUpResult = supabase.auth.signUp({
+                email,
+                password,
+                options: { emailRedirectTo: `${window.location.origin}/dashboard` },
+            });
+            const { error } = await Promise.race([signUpResult, timeout]) as Awaited<typeof signUpResult>;
+
+            if (error) {
+                setError(error.message);
+            } else {
+                setSuccess(true);
+            }
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : "Failed to connect. Please try again.");
+        } finally {
             setLoading(false);
         }
     }

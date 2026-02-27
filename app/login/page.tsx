@@ -20,14 +20,24 @@ export default function LoginPage() {
         setError("");
 
         const supabase = createClient();
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
 
-        if (error) {
-            setError(error.message);
+        try {
+            const timeout = new Promise<never>((_, reject) =>
+                setTimeout(() => reject(new Error("Connection timed out. Supabase may be starting up — try again in 30 seconds.")), 8000)
+            );
+            const signInResult = supabase.auth.signInWithPassword({ email, password });
+            const { error } = await Promise.race([signInResult, timeout]) as Awaited<typeof signInResult>;
+
+            if (error) {
+                setError(error.message);
+            } else {
+                router.push("/dashboard");
+                router.refresh();
+            }
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : "Failed to connect. Please try again.");
+        } finally {
             setLoading(false);
-        } else {
-            router.push("/dashboard");
-            router.refresh();
         }
     }
 
