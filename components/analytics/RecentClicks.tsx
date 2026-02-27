@@ -30,7 +30,7 @@ export default function RecentClicks({ clicks }: { clicks: Click[] }) {
                                 {formatDateTime(click.timestamp)}
                             </td>
                             <td className="py-2.5 px-3 text-xs text-gray-700 font-medium">
-                                {getPlatformFromReferrer(click.referrer)}
+                                {getPlatformFromReferrer(click.referrer, click.user_agent)}
                             </td>
                             <td className="py-2.5 px-3">
                                 <div className="flex items-center gap-1.5 text-xs text-gray-600">

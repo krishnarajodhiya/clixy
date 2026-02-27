@@ -31,7 +31,23 @@ export function isValidUrl(url: string): boolean {
     }
 }
 
-export function getPlatformFromReferrer(referrer: string | null): string {
+export function getPlatformFromReferrer(referrer: string | null, userAgent?: string | null): string {
+    // 1. First try to extract from User-Agent (crucial for mobile apps that drop referrers)
+    if (userAgent) {
+        const ua = userAgent.toLowerCase();
+        if (ua.includes("whatsapp")) return "WhatsApp";
+        if (ua.includes("instagram")) return "Instagram";
+        if (ua.includes("fban") || ua.includes("fbios")) return "Facebook";
+        if (ua.includes("tiktok")) return "TikTok";
+        if (ua.includes("snapchat")) return "Snapchat";
+        if (ua.includes("twitter") || ua.includes("twitter")) return "Twitter";
+        if (ua.includes("telegram")) return "Telegram";
+        if (ua.includes("linkedin")) return "LinkedIn";
+        if (ua.includes("discord")) return "Discord";
+        if (ua.includes("youtube")) return "YouTube";
+    }
+
+    // 2. Fallback to Referrer if no app matched in UA
     if (!referrer) return "Direct";
     try {
         const url = new URL(referrer);
@@ -41,13 +57,15 @@ export function getPlatformFromReferrer(referrer: string | null): string {
             return "YouTube";
         if (hostname.includes("facebook") || hostname.includes("fb.com"))
             return "Facebook";
-        if (hostname.includes("twitter") || hostname.includes("x.com"))
+        if (hostname.includes("twitter") || hostname.includes("x.com") || hostname.includes("t.co"))
             return "Twitter";
         if (hostname.includes("tiktok")) return "TikTok";
         if (hostname.includes("linkedin")) return "LinkedIn";
         if (hostname.includes("pinterest")) return "Pinterest";
         if (hostname.includes("reddit")) return "Reddit";
         if (hostname.includes("snapchat")) return "Snapchat";
+        if (hostname.includes("telegram") || hostname.includes("t.me")) return "Telegram";
+        if (hostname.includes("whatsapp")) return "WhatsApp";
         return hostname.replace("www.", "");
     } catch {
         return "Unknown";

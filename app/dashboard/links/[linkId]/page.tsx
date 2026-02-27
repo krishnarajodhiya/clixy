@@ -26,7 +26,7 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
     const totalClicks = allClicks.length;
 
     const platformMap: Record<string, number> = {};
-    allClicks.forEach((c) => { const p = getPlatformFromReferrer(c.referrer); platformMap[p] = (platformMap[p] || 0) + 1; });
+    allClicks.forEach((c) => { const p = getPlatformFromReferrer(c.referrer, c.user_agent); platformMap[p] = (platformMap[p] || 0) + 1; });
     const platformData = Object.entries(platformMap).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
 
     const deviceMap: Record<string, number> = {};
