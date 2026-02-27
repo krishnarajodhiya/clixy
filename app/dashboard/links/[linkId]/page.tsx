@@ -5,6 +5,7 @@ import StatsCard from "@/components/dashboard/StatsCard";
 import SimpleBarChart from "@/components/analytics/BarChart";
 import RecentClicks from "@/components/analytics/RecentClicks";
 import CopyButton from "@/components/links/CopyButton";
+import RefreshButton from "@/components/dashboard/RefreshButton";
 import { getPlatformFromReferrer } from "@/lib/utils";
 import { MousePointerClick, Smartphone, Globe, Monitor, ArrowLeft, ExternalLink } from "lucide-react";
 import Link from "next/link";
@@ -48,7 +49,9 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
 
     return (
         <div>
-            <DashboardHeader title="Analytics" />
+            <DashboardHeader title="Analytics">
+                <RefreshButton />
+            </DashboardHeader>
             <div className="p-6 space-y-5">
                 {/* Back + link info */}
                 <div>
@@ -122,9 +125,12 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
 
                 {/* Recent clicks */}
                 <div className="card rounded-xl p-5">
-                    <p className="text-sm font-semibold text-gray-900 mb-4">
-                        Recent clicks <span className="text-gray-400 font-normal">({Math.min(allClicks.length, 50)} of {totalClicks})</span>
-                    </p>
+                    <div className="flex items-center justify-between gap-4 mb-4">
+                        <p className="text-sm font-semibold text-gray-900">
+                            Recent clicks <span className="text-gray-400 font-normal">({Math.min(allClicks.length, 50)} of {totalClicks})</span>
+                        </p>
+                        <RefreshButton />
+                    </div>
                     <RecentClicks clicks={allClicks.slice(0, 50)} />
                 </div>
             </div>
