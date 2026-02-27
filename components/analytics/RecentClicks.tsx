@@ -1,6 +1,7 @@
 import { Click } from "@/types";
-import { formatDateTime, getPlatformFromReferrer } from "@/lib/utils";
+import { getPlatformFromReferrer } from "@/lib/utils";
 import { Monitor, Smartphone, Globe } from "lucide-react";
+import LocalTime from "./LocalTime";
 
 export default function RecentClicks({ clicks }: { clicks: Click[] }) {
     if (!clicks || clicks.length === 0) {
@@ -27,7 +28,7 @@ export default function RecentClicks({ clicks }: { clicks: Click[] }) {
                     {clicks.map((click) => (
                         <tr key={click.id} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
                             <td className="py-2.5 px-3 text-xs text-gray-500 whitespace-nowrap">
-                                {formatDateTime(click.timestamp)}
+                                <LocalTime timestamp={click.timestamp} />
                             </td>
                             <td className="py-2.5 px-3 text-xs text-gray-700 font-medium">
                                 {getPlatformFromReferrer(click.referrer, click.user_agent)}
