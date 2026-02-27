@@ -6,7 +6,7 @@ import LocalTime from "./LocalTime";
 export default function RecentClicks({ clicks }: { clicks: Click[] }) {
     if (!clicks || clicks.length === 0) {
         return (
-            <div className="flex items-center justify-center h-28 text-gray-400 text-sm">
+            <div className="flex items-center justify-center p-12 text-[#a3a3a3] text-sm font-bold uppercase tracking-widest border-2 border-dashed border-[#262626] m-4 rounded-xl">
                 No clicks yet
             </div>
         );
@@ -16,9 +16,9 @@ export default function RecentClicks({ clicks }: { clicks: Click[] }) {
         <div className="overflow-x-auto">
             <table className="w-full text-sm">
                 <thead>
-                    <tr className="border-b border-gray-100">
+                    <tr className="border-b-2 border-dashed border-[#f4f2e9] bg-[#1a1a19]">
                         {["Time", "Platform", "Device", "Country"].map((h) => (
-                            <th key={h} className="text-left py-2 px-3 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+                            <th key={h} className="text-left py-3 px-4 text-xs font-black text-[#f4f2e9] uppercase tracking-widest">
                                 {h}
                             </th>
                         ))}
@@ -26,24 +26,24 @@ export default function RecentClicks({ clicks }: { clicks: Click[] }) {
                 </thead>
                 <tbody>
                     {clicks.map((click) => (
-                        <tr key={click.id} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
-                            <td className="py-2.5 px-3 text-xs text-gray-500 whitespace-nowrap">
+                        <tr key={click.id} className="border-b-2 border-dashed border-[#262626] hover:bg-[#1a1a19] transition-colors cursor-default">
+                            <td className="py-3 px-4 text-xs font-bold text-[#a3a3a3] whitespace-nowrap">
                                 <LocalTime timestamp={click.timestamp} />
                             </td>
-                            <td className="py-2.5 px-3 text-xs text-gray-700 font-medium">
+                            <td className="py-3 px-4 text-xs text-[#f4f2e9] font-black uppercase tracking-widest">
                                 {getPlatformFromReferrer(click.referrer, click.user_agent)}
                             </td>
-                            <td className="py-2.5 px-3">
-                                <div className="flex items-center gap-1.5 text-xs text-gray-600">
+                            <td className="py-3 px-4">
+                                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#a3a3a3]">
                                     {click.device === "Mobile"
-                                        ? <Smartphone className="w-3.5 h-3.5 text-blue-500" />
-                                        : <Monitor className="w-3.5 h-3.5 text-gray-400" />}
+                                        ? <Smartphone className="w-4 h-4 text-[#ff6b4a]" />
+                                        : <Monitor className="w-4 h-4 text-[#52ff7a]" />}
                                     {click.device || "Unknown"}
                                 </div>
                             </td>
-                            <td className="py-2.5 px-3">
-                                <div className="flex items-center gap-1.5 text-xs text-gray-600">
-                                    <Globe className="w-3.5 h-3.5 text-gray-400" />
+                            <td className="py-3 px-4">
+                                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#a3a3a3]">
+                                    <Globe className="w-4 h-4 text-[#737373]" />
                                     {click.country || "Unknown"}
                                 </div>
                             </td>

@@ -56,22 +56,22 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
                 {/* Back + link info */}
                 <div>
                     <Link href="/dashboard/links"
-                        className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 mb-4 transition-colors">
+                        className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#a3a3a3] hover:text-[#ff6b4a] hover:-translate-x-1 mb-4 transition-all">
                         <ArrowLeft className="w-4 h-4" /> Back to links
                     </Link>
 
-                    <div className="card rounded-xl p-5">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div className="card rounded-xl p-5 border-2 border-dashed border-[#f4f2e9] bg-[#0d0d0c]">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <div className="flex-1 min-w-0">
-                                <h2 className="text-base font-bold text-gray-900 mb-1">{link.name}</h2>
-                                <div className="flex items-center gap-1.5">
-                                    <span className="text-sm font-mono text-blue-600">{shortUrl}</span>
+                                <h2 className="text-lg font-black uppercase tracking-wider text-[#f4f2e9] mb-1">{link.name}</h2>
+                                <div className="flex items-center gap-2">
+                                    <span className="text-sm font-bold text-[#52ff7a]">{shortUrl}</span>
                                     <CopyButton text={shortUrl} />
                                 </div>
-                                <p className="text-xs text-gray-400 mt-1 truncate">→ {link.destination_url}</p>
+                                <p className="text-xs font-semibold tracking-wider text-[#a3a3a3] mt-2 truncate">→ {link.destination_url}</p>
                             </div>
                             <a href={link.destination_url} target="_blank" rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-4 py-2 border border-gray-200 hover:border-gray-300 text-gray-600 hover:text-gray-900 rounded-lg text-sm font-medium transition-colors flex-shrink-0">
+                                className="flex items-center gap-2 px-4 py-2 bg-[#0d0d0c] border-2 border-[#f4f2e9] hover:shadow-[3px_3px_0_#ff6b4a] hover:-translate-y-0.5 text-[#f4f2e9] rounded-lg text-xs font-bold uppercase tracking-wider transition-all flex-shrink-0">
                                 <ExternalLink className="w-4 h-4" /> Open destination
                             </a>
                         </div>
@@ -95,8 +95,8 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
                         { title: "By Device", data: deviceData },
                         { title: "By Country", data: countryData },
                     ].map((chart) => (
-                        <div key={chart.title} className="card rounded-xl p-5">
-                            <p className="text-sm font-semibold text-gray-900 mb-4">{chart.title}</p>
+                        <div key={chart.title} className="card rounded-xl p-5 border-2 border-dashed border-[#f4f2e9] bg-[#0d0d0c]">
+                            <p className="text-sm font-black uppercase tracking-widest text-[#a3a3a3] mb-4">{chart.title}</p>
                             <SimpleBarChart data={chart.data} />
                         </div>
                     ))}
@@ -104,18 +104,18 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
 
                 {/* Platform breakdown bar */}
                 {platformData.length > 0 && (
-                    <div className="card rounded-xl p-5">
-                        <p className="text-sm font-semibold text-gray-900 mb-4">Platform breakdown</p>
-                        <div className="space-y-3">
+                    <div className="card rounded-xl p-5 border-2 border-dashed border-[#f4f2e9] bg-[#0d0d0c]">
+                        <p className="text-sm font-black uppercase tracking-widest text-[#a3a3a3] mb-5">Platform breakdown</p>
+                        <div className="space-y-4">
                             {platformData.map((p) => {
                                 const pct = totalClicks > 0 ? Math.round((p.count / totalClicks) * 100) : 0;
                                 return (
-                                    <div key={p.name} className="flex items-center gap-3">
-                                        <div className="w-24 text-sm text-gray-700 font-medium truncate">{p.name}</div>
-                                        <div className="flex-1 bg-gray-100 rounded-full h-1.5 overflow-hidden">
-                                            <div className="h-full rounded-full bg-blue-600 transition-all duration-500" style={{ width: `${pct}%` }} />
+                                    <div key={p.name} className="flex items-center gap-4">
+                                        <div className="w-24 text-xs font-bold uppercase tracking-widest text-[#f4f2e9] truncate">{p.name}</div>
+                                        <div className="flex-1 bg-[#1a1a19] border-2 border-[#1a1a19] rounded-full h-3 overflow-hidden">
+                                            <div className="h-full rounded-full bg-[#ff6b4a] shadow-[0_0_10px_#ff6b4a] transition-all duration-500" style={{ width: `${pct}%` }} />
                                         </div>
-                                        <div className="w-16 text-right text-xs text-gray-500">{p.count} ({pct}%)</div>
+                                        <div className="w-16 text-right text-xs font-bold text-[#a3a3a3]">{p.count} <span className="text-[#737373]">({pct}%)</span></div>
                                     </div>
                                 );
                             })}
@@ -124,14 +124,16 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
                 )}
 
                 {/* Recent clicks */}
-                <div className="card rounded-xl p-5">
-                    <div className="flex items-center justify-between gap-4 mb-4">
-                        <p className="text-sm font-semibold text-gray-900">
-                            Recent clicks <span className="text-gray-400 font-normal">({Math.min(allClicks.length, 50)} of {totalClicks})</span>
+                <div className="card rounded-xl border-2 border-dashed border-[#f4f2e9] bg-[#0d0d0c]">
+                    <div className="flex items-center justify-between gap-4 p-5 border-b-2 border-dashed border-[#f4f2e9]">
+                        <p className="text-sm font-black uppercase tracking-widest text-[#f4f2e9]">
+                            Recent clicks <span className="text-[#737373] ml-2">({Math.min(allClicks.length, 50)} of {totalClicks})</span>
                         </p>
                         <RefreshButton />
                     </div>
-                    <RecentClicks clicks={allClicks.slice(0, 50)} />
+                    <div className="p-0">
+                        <RecentClicks clicks={allClicks.slice(0, 50)} />
+                    </div>
                 </div>
             </div>
         </div>

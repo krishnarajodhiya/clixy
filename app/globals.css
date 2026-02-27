@@ -2,17 +2,17 @@
 
 :root {
   --font-inter: "Inter", sans-serif;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-light: #eff6ff;
-  --accent-border: #bfdbfe;
-  --text-primary: #0a0a0a;
-  --text-secondary: #6b7280;
-  --text-muted: #9ca3af;
-  --border: #e5e7eb;
-  --surface: #f9fafb;
-  --card: #ffffff;
-  --bg: #ffffff;
+  --accent: #ff6b4a;
+  --accent-hover: #e55a3b;
+  --accent-light: #52ff7a;
+  --accent-border: #f4f2e9;
+  --text-primary: #f4f2e9;
+  --text-secondary: #a3a3a3;
+  --text-muted: #737373;
+  --border: #f4f2e9;
+  --surface: #171716;
+  --card: #0d0d0c;
+  --bg: #0d0d0c;
 }
 
 * {
@@ -28,24 +28,27 @@ body {
   background: var(--bg);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
+  /* Add subtle grain/noise */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f3f4f6;
+  background: #0d0d0c;
+  border-left: 2px solid #f4f2e9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 4px;
+  background: #f4f2e9;
+  border: 2px solid #0d0d0c;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
+  background: #ff6b4a;
 }
 
 /* Animations */
@@ -76,66 +79,119 @@ body {
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background: linear-gradient(90deg, #171716 25%, #262626 50%, #171716 75%);
   background-size: 200% 100%;
   animation: shimmer 1.4s infinite;
 }
 
-/* Card */
+/* Card - Neobrutalism Style */
 .card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 var(--border);
 }
 
 .card-hover {
-  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .card-hover:hover {
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  border-color: #d1d5db;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--accent);
 }
 
 /* Button accent */
 .btn-primary {
   background: var(--accent);
-  color: #fff;
-  border-radius: 7px;
-  font-weight: 500;
-  transition: background 0.15s ease, transform 0.1s ease;
+  color: #0d0d0c;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 4px 4px 0 var(--border);
+  transition: all 0.15s ease;
 }
 
 .btn-primary:hover {
   background: var(--accent-hover);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--border);
 }
 
 .btn-primary:active {
-  transform: scale(0.98);
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0 var(--border);
 }
 
 /* Input */
 .input-base {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 7px;
+  background: #0d0d0c;
+  border: 2px solid var(--border);
+  border-radius: 8px;
   color: var(--text-primary);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  font-weight: 600;
+  box-shadow: 4px 4px 0 rgba(244, 242, 233, 0.2);
+  transition: all 0.15s ease;
 }
 
 .input-base:focus {
   outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+  border-color: var(--accent-light);
+  box-shadow: 4px 4px 0 var(--accent-light);
+  transform: translate(-2px, -2px);
+}
+
+.input-base::placeholder {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Select */
+select.input-base {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23f4f2e9'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-position: right 0.75rem center;
+  background-size: 1.25rem 1.25rem;
+  background-repeat: no-repeat;
 }
 
 /* Badge */
 .badge {
   display: inline-flex;
   align-items: center;
-  padding: 2px 8px;
-  border-radius: 5px;
+  padding: 4px 10px;
+  border: 2px dashed var(--border);
+  border-radius: 6px;
   font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #0d0d0c;
+  color: var(--accent-light);
+}
+
+/* Table fixes for dark theme */
+th {
+  color: var(--text-muted) !important;
+  border-bottom: 2px dashed var(--border) !important;
+}
+
+tr {
+  border-bottom: 1px solid #262626 !important;
+}
+
+tr:hover {
+  background-color: #1a1a19 !important;
+}
+
+td {
+  color: var(--text-primary) !important;
+}
+
+/* Links */
+a {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
 }

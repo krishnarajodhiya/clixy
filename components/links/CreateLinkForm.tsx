@@ -68,85 +68,83 @@ export default function CreateLinkForm() {
     if (success) {
         return (
             <div className="flex flex-col items-center justify-center py-12">
-                <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-3">
-                    <CheckCircle className="w-6 h-6 text-blue-600" />
+                <div className="w-12 h-12 rounded-xl bg-[#0d0d0c] border-2 border-[#f4f2e9] shadow-[3px_3px_0_#52ff7a] flex items-center justify-center mb-4">
+                    <CheckCircle className="w-6 h-6 text-[#52ff7a]" />
                 </div>
-                <p className="text-sm font-semibold text-gray-900">Link created!</p>
-                <p className="text-xs text-gray-400 mt-1">Redirecting…</p>
+                <p className="text-sm font-black uppercase tracking-wider text-[#f4f2e9]">Link created!</p>
+                <p className="text-xs font-semibold uppercase tracking-wider text-[#a3a3a3] mt-2">Redirecting…</p>
             </div>
         );
     }
 
-    const inputCls = "input-base w-full px-3 py-2.5 text-sm";
-
     return (
-        <form onSubmit={handleSubmit} className="space-y-5 max-w-xl">
+        <form onSubmit={handleSubmit} className="space-y-6 max-w-xl">
             <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1.5">
-                    Link name <span className="text-red-500">*</span>
+                <label className="block text-xs font-bold uppercase tracking-widest text-[#a3a3a3] mb-2">
+                    Link name <span className="text-[#ff6b4a]">*</span>
                 </label>
                 <div className="relative">
-                    <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#737373]" />
                     <input id="link-name" type="text" required value={form.name}
                         onChange={(e) => update("name", e.target.value)}
                         placeholder="e.g. YouTube Product Review"
-                        className="input-base w-full pl-9 pr-3 py-2.5 text-sm" />
+                        className="input-base w-full pl-9 pr-3 py-3 text-sm" />
                 </div>
             </div>
 
             <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1.5">
-                    Destination URL <span className="text-red-500">*</span>
+                <label className="block text-xs font-bold uppercase tracking-widest text-[#a3a3a3] mb-2">
+                    Destination URL <span className="text-[#ff6b4a]">*</span>
                 </label>
                 <div className="relative">
-                    <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#737373]" />
                     <input id="destination-url" type="url" required value={form.destination_url}
                         onChange={(e) => update("destination_url", e.target.value)}
                         placeholder="https://youtube.com/watch?v=..."
-                        className="input-base w-full pl-9 pr-3 py-2.5 text-sm" />
+                        className="input-base w-full pl-9 pr-3 py-3 text-sm flex-1" />
                 </div>
             </div>
 
             <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1.5">
-                    Custom slug <span className="text-gray-400 font-normal">(optional)</span>
+                <label className="block text-xs font-bold uppercase tracking-widest text-[#a3a3a3] mb-2">
+                    Custom slug <span className="text-[#737373] font-semibold">(optional)</span>
                 </label>
                 <div className="flex">
-                    <span className="px-3 py-2.5 bg-gray-50 border border-r-0 border-gray-200 rounded-l-lg text-xs text-gray-500 whitespace-nowrap flex items-center">
+                    <span className="px-3 py-3 bg-[#1a1a19] border-2 border-r-0 border-[#f4f2e9] rounded-l-lg text-xs font-bold text-[#a3a3a3] whitespace-nowrap flex items-center">
                         /r/
                     </span>
                     <div className="relative flex-1">
-                        <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#737373]" />
                         <input id="custom-slug" type="text" value={form.slug}
                             onChange={(e) => update("slug", e.target.value)}
                             placeholder="my-link"
-                            className="input-base w-full pl-9 pr-3 py-2.5 text-sm rounded-l-none" />
+                            className="input-base w-full pl-9 pr-3 py-3 text-sm rounded-l-none" />
                     </div>
                 </div>
-                <p className="text-xs text-gray-400 mt-1 flex items-center gap-1">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-[#737373] mt-2 flex items-center gap-1.5">
                     <Wand2 className="w-3 h-3" /> Leave blank to auto-generate
                 </p>
             </div>
 
             <div>
                 <button type="button" id="utm-toggle" onClick={() => setShowUtm(!showUtm)}
-                    className="flex items-center gap-1.5 text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors">
+                    className="flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-[#ff6b4a] hover:text-[#e55a3b] transition-colors">
                     {showUtm ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     UTM parameters
                 </button>
                 {showUtm && (
-                    <div className="mt-3 grid grid-cols-3 gap-3 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                    <div className="mt-4 grid grid-cols-3 gap-3 p-4 bg-[#1a1a19] border-2 border-dashed border-[#262626] rounded-xl">
                         {[
                             { key: "utm_source", label: "Source", placeholder: "instagram" },
                             { key: "utm_medium", label: "Medium", placeholder: "social" },
                             { key: "utm_campaign", label: "Campaign", placeholder: "spring-sale" },
                         ].map((f) => (
                             <div key={f.key}>
-                                <label className="block text-[10px] font-medium text-gray-500 mb-1">{f.label}</label>
+                                <label className="block text-[9px] font-bold uppercase tracking-widest text-[#737373] mb-1.5">{f.label}</label>
                                 <input id={f.key} type="text" value={form[f.key as keyof typeof form]}
                                     onChange={(e) => update(f.key, e.target.value)}
                                     placeholder={f.placeholder}
-                                    className="input-base w-full px-2.5 py-2 text-xs" />
+                                    className="input-base w-full px-3 py-2 text-xs" />
                             </div>
                         ))}
                     </div>
@@ -154,13 +152,13 @@ export default function CreateLinkForm() {
             </div>
 
             {error && (
-                <p className="text-xs text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">
+                <p className="text-xs font-bold text-[#0d0d0c] bg-[#ff4a4a] border-2 border-[#ff4a4a] rounded-lg px-3 py-2 shadow-[2px_2px_0_#f4f2e9]">
                     {error}
                 </p>
             )}
 
             <button id="create-link-submit" type="submit" disabled={loading}
-                className="btn-primary flex items-center gap-2 px-5 py-2.5 text-sm disabled:opacity-60">
+                className="btn-primary w-full flex items-center justify-center gap-2 px-5 py-3 text-sm disabled:opacity-60 shadow-[4px_4px_0_#f4f2e9] hover:shadow-[6px_6px_0_#f4f2e9]">
                 {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Creating…</> : <><Link2 className="w-4 h-4" /> Create link</>}
             </button>
         </form>
