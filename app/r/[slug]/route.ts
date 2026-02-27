@@ -72,7 +72,7 @@ export async function GET(
         return new NextResponse(
             `<!DOCTYPE html>
       <html>
-        <head><title>Link Not Found – LinkTrack</title>
+        <head><title>Link Not Found – Clixy</title>
         <style>
           body{font-family:system-ui;background:#030712;color:#f9fafb;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;}
           .box{text-align:center;padding:2rem;}
@@ -85,7 +85,7 @@ export async function GET(
           <div class="box">
             <h1>🔗 Link Not Found</h1>
             <p>This tracking link does not exist or has been removed.</p>
-            <a href="/">Go to LinkTrack</a>
+            <a href="/">Go to Clixy</a>
           </div>
         </body>
       </html>`,

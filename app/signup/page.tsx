@@ -86,7 +86,7 @@ export default function SignupPage() {
                     <div className="w-7 h-7 rounded-md bg-blue-600 flex items-center justify-center">
                         <Link2 className="w-3.5 h-3.5 text-white" />
                     </div>
-                    <span className="text-sm font-semibold text-gray-900">LinkTrack</span>
+                    <span className="text-sm font-semibold text-gray-900">Clixy</span>
                 </Link>
             </div>
 

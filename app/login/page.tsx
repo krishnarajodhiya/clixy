@@ -48,7 +48,7 @@ export default function LoginPage() {
                     <div className="w-7 h-7 rounded-md bg-blue-600 flex items-center justify-center">
                         <Link2 className="w-3.5 h-3.5 text-white" />
                     </div>
-                    <span className="text-sm font-semibold text-gray-900">LinkTrack</span>
+                    <span className="text-sm font-semibold text-gray-900">Clixy</span>
                 </Link>
             </div>
 
@@ -56,7 +56,7 @@ export default function LoginPage() {
             <div className="flex-1 flex items-center justify-center px-4 py-12">
                 <div className="w-full max-w-sm animate-fade-up">
                     <div className="mb-7">
-                        <h1 className="text-xl font-bold text-gray-900">Sign in to LinkTrack</h1>
+                        <h1 className="text-xl font-bold text-gray-900">Sign in to Clixy</h1>
                         <p className="text-sm text-gray-500 mt-1">
                             Don&apos;t have an account?{" "}
                             <Link href="/signup" className="text-blue-600 hover:text-blue-700 font-medium">

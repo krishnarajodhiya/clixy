@@ -22,7 +22,7 @@ export default function LandingPage() {
               <Link2 className="w-3.5 h-3.5 text-white" />
             </div>
             <span className="text-base font-semibold tracking-tight text-gray-900">
-              LinkTrack
+              Clixy
             </span>
           </Link>
           <div className="flex items-center gap-2">
@@ -150,7 +150,7 @@ export default function LandingPage() {
             <div className="w-5 h-5 rounded bg-blue-600 flex items-center justify-center">
               <Link2 className="w-2.5 h-2.5 text-white" />
             </div>
-            <span className="font-medium text-gray-500">LinkTrack</span>
+            <span className="font-medium text-gray-500">Clixy</span>
           </div>
           <span>Built with Next.js + Supabase</span>
         </div>

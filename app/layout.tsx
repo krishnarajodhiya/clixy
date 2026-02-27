@@ -5,9 +5,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "LinkTrack – Influencer Smart Link Tracker",
+  title: "Clixy – Smart Link Tracker for Influencers",
   description:
-    "Create smart tracking links, capture analytics, and grow your audience with deep insights.",
+    "Create short tracking links and capture deep analytics on every click — platform, device, and country.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
