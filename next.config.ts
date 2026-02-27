@@ -10,6 +10,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Proxy Supabase requests through Vercel to bypass ISP blocks (like Jio in India)
+  async rewrites() {
+    return [
+      {
+        source: "/api/supabase/:path*",
+        destination: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/:path*`,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

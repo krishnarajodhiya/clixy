@@ -81,10 +81,14 @@ CREATE POLICY "anon_select_links_by_slug"
 
 -- ── clicks policies ──────────────────────────────────────────
 
--- Allow anon to insert clicks (redirect route runs as anon)
+-- Allow anon to insert clicks only for valid, existing link IDs
 CREATE POLICY "anon_insert_clicks"
   ON public.clicks FOR INSERT
-  WITH CHECK (true);
+  WITH CHECK (
+    EXISTS (
+      SELECT 1 FROM public.links WHERE id = link_id
+    )
+  );
 
 -- Users can only read clicks for their own links
 CREATE POLICY "users_select_own_clicks"
