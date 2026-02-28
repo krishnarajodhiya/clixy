@@ -40,8 +40,8 @@ export function getPlatformFromReferrer(referrer: string | null, userAgent?: str
         if (ua.includes("fban") || ua.includes("fbios")) return "FB / Instagram";
         if (ua.includes("tiktok")) return "TikTok";
         if (ua.includes("snapchat")) return "Snapchat";
-        if (ua.includes("twitter") || ua.includes("twitter")) return "Twitter";
-        if (ua.includes("telegram")) return "Telegram";
+        if (ua.includes("telegram")) return "Telegram"; // TelegramBot uses "(like TwitterBot)", so it must be checked first
+        if (ua.includes("twitter")) return "Twitter";
         if (ua.includes("linkedin")) return "LinkedIn";
         if (ua.includes("discord")) return "Discord";
         if (ua.includes("youtube")) return "YouTube";
