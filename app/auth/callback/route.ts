@@ -33,6 +33,7 @@ export async function GET(request: Request) {
         }
     }
 
-    // return the user to an error page with instructions
-    return NextResponse.redirect(`${origin}/login?error=Invalid+Magic+Link`)
+    // If there's no code, it might be an Implicit Flow redirect featuring a hash fragment.
+    // We perfectly bounce the user to their intended destination so the client-side JS can parse the hash!
+    return NextResponse.redirect(`${origin}${next}`)
 }
