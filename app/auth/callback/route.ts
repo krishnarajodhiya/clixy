@@ -25,6 +25,9 @@ export async function GET(request: Request) {
                         cookieStore.delete({ name, ...options })
                     },
                 },
+                cookieOptions: {
+                    name: 'sb-clixy-auth-token',
+                }
             }
         )
         const { error } = await supabase.auth.exchangeCodeForSession(code)
