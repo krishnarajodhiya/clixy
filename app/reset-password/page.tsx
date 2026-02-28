@@ -1,17 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Lock, Eye, EyeOff, Loader2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
-export default function ResetPasswordPage() {
+function ResetPasswordContent() {
     const router = useRouter();
+    const searchParams = useSearchParams();
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
+
+    // Grab any initial errors forwarded directly from the server route
+    const [error, setError] = useState(searchParams.get("error") || "");
 
     useEffect(() => {
         // Parse hash manually as a backup fallback if auth listener is slow
@@ -129,5 +132,17 @@ export default function ResetPasswordPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function ResetPasswordPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-bg flex items-center justify-center">
+                <Loader2 className="w-8 h-8 animate-spin text-accent" />
+            </div>
+        }>
+            <ResetPasswordContent />
+        </Suspense>
     );
 }
