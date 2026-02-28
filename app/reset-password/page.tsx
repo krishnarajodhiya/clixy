@@ -13,15 +13,30 @@ export default function ResetPasswordPage() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    // Make sure we have a session before allowing them to reset, but realistically Supabase SDK
-    // will pick up the hash token from the URL and log them in immediately.
+    const [sessionReady, setSessionReady] = useState(false);
+
     useEffect(() => {
         const supabase = createClient();
-        supabase.auth.onAuthStateChange((event, session) => {
-            if (event === "PASSWORD_RECOVERY") {
-                // Good to go
+
+        // Grab current session immediately in case hash was parsed fast
+        supabase.auth.getSession().then(({ data: { session }, error }) => {
+            if (session) {
+                setSessionReady(true);
             }
         });
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+            if (session) {
+                setSessionReady(true);
+            }
+        });
+
+        // Parse hash manually as a backup fallback if auth listener is slow
+        if (window.location.hash && window.location.hash.includes('access_token')) {
+            setTimeout(() => setSessionReady(true), 500);
+        }
+
+        return () => subscription.unsubscribe();
     }, []);
 
     async function handleSubmit(e: React.FormEvent) {
@@ -42,6 +57,14 @@ export default function ResetPasswordPage() {
         const supabase = createClient();
 
         try {
+            // First double check session existence
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session) {
+                setError("Auth session missing! Please request a new password reset link and try again.");
+                setLoading(false);
+                return;
+            }
+
             const { error: updateError } = await supabase.auth.updateUser({ password });
 
             if (updateError) {
@@ -116,10 +139,12 @@ export default function ResetPasswordPage() {
 
                         <button
                             type="submit"
-                            disabled={loading || !password || !confirmPassword}
+                            disabled={loading || !password || !confirmPassword || !sessionReady}
                             className="btn-primary w-full py-3 text-sm flex items-center justify-center gap-2 disabled:opacity-60"
                         >
-                            {loading ? (
+                            {!sessionReady ? (
+                                <><Loader2 className="w-4 h-4 animate-spin" /> Verifying link…</>
+                            ) : loading ? (
                                 <><Loader2 className="w-4 h-4 animate-spin" /> Updating…</>
                             ) : (
                                 "Update password"
