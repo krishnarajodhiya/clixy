@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import DashboardHeader from "@/components/dashboard/Header";
 import StatsCard from "@/components/dashboard/StatsCard";
-import SimpleBarChart from "@/components/analytics/BarChart";
+import UnifiedAnalyticsCharts from "@/components/analytics/UnifiedAnalyticsCharts";
 import RecentClicks from "@/components/analytics/RecentClicks";
 import CopyButton from "@/components/links/CopyButton";
 import RefreshButton from "@/components/dashboard/RefreshButton";
@@ -89,17 +89,12 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
                 </div>
 
                 {/* Charts */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                    {[
-                        { title: "By Platform", data: platformData },
-                        { title: "By Device", data: deviceData },
-                        { title: "By Country", data: countryData },
-                    ].map((chart) => (
-                        <div key={chart.title} className="card rounded-xl p-5 border border-solid border-border bg-bg">
-                            <p className="text-sm font-medium uppercase tracking-widest text-text-secondary mb-4">{chart.title}</p>
-                            <SimpleBarChart data={chart.data} />
-                        </div>
-                    ))}
+                <div className="w-full">
+                    <UnifiedAnalyticsCharts
+                        platformData={platformData}
+                        deviceData={deviceData}
+                        countryData={countryData}
+                    />
                 </div>
 
                 {/* Platform breakdown bar */}
