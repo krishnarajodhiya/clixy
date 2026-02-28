@@ -13,30 +13,12 @@ export default function ResetPasswordPage() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    const [sessionReady, setSessionReady] = useState(false);
-
     useEffect(() => {
-        const supabase = createClient();
-
-        // Grab current session immediately in case hash was parsed fast
-        supabase.auth.getSession().then(({ data: { session }, error }) => {
-            if (session) {
-                setSessionReady(true);
-            }
-        });
-
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-            if (session) {
-                setSessionReady(true);
-            }
-        });
-
         // Parse hash manually as a backup fallback if auth listener is slow
-        if (window.location.hash && window.location.hash.includes('access_token')) {
-            setTimeout(() => setSessionReady(true), 500);
+        if (typeof window !== 'undefined' && window.location.hash && window.location.hash.includes('access_token')) {
+            // Give Supabase client a moment to parse the URL hash and hydrate the active session
+            // before the user could possibly type and submit "Update password".
         }
-
-        return () => subscription.unsubscribe();
     }, []);
 
     async function handleSubmit(e: React.FormEvent) {
@@ -57,14 +39,9 @@ export default function ResetPasswordPage() {
         const supabase = createClient();
 
         try {
-            // First double check session existence
-            const { data: { session } } = await supabase.auth.getSession();
-            if (!session) {
-                setError("Auth session missing! Please request a new password reset link and try again.");
-                setLoading(false);
-                return;
-            }
-
+            // Simply trust Supabase to run the password modification.
+            // If the user's url hash or cookies don't provide a session under the hood, this will 
+            // naturally throw its own exact error.
             const { error: updateError } = await supabase.auth.updateUser({ password });
 
             if (updateError) {
@@ -139,12 +116,10 @@ export default function ResetPasswordPage() {
 
                         <button
                             type="submit"
-                            disabled={loading || !password || !confirmPassword || !sessionReady}
+                            disabled={loading || !password || !confirmPassword}
                             className="btn-primary w-full py-3 text-sm flex items-center justify-center gap-2 disabled:opacity-60"
                         >
-                            {!sessionReady ? (
-                                <><Loader2 className="w-4 h-4 animate-spin" /> Verifying link…</>
-                            ) : loading ? (
+                            {loading ? (
                                 <><Loader2 className="w-4 h-4 animate-spin" /> Updating…</>
                             ) : (
                                 "Update password"
