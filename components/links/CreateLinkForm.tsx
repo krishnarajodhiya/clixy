@@ -68,10 +68,10 @@ export default function CreateLinkForm() {
     if (success) {
         return (
             <div className="flex flex-col items-center justify-center py-12">
-                <div className="w-12 h-12 rounded-xl bg-[#0d0d0c] border-2 border-[#f4f2e9] shadow-[3px_3px_0_#52ff7a] flex items-center justify-center mb-4">
-                    <CheckCircle className="w-6 h-6 text-[#52ff7a]" />
+                <div className="w-12 h-12 rounded-xl bg-[#111111] border border-[#2b2b2b] shadow-md flex items-center justify-center mb-4">
+                    <CheckCircle className="w-6 h-6 text-[#e5e5e5]" />
                 </div>
-                <p className="text-sm font-black uppercase tracking-wider text-[#f4f2e9]">Link created!</p>
+                <p className="text-sm font-medium uppercase tracking-wider text-[#e5e5e5]">Link created!</p>
                 <p className="text-xs font-semibold uppercase tracking-wider text-[#a3a3a3] mt-2">Redirecting…</p>
             </div>
         );
@@ -81,7 +81,7 @@ export default function CreateLinkForm() {
         <form onSubmit={handleSubmit} className="space-y-6 max-w-xl">
             <div>
                 <label className="block text-xs font-bold uppercase tracking-widest text-[#a3a3a3] mb-2">
-                    Link name <span className="text-[#ff6b4a]">*</span>
+                    Link name <span className="text-[#ffffff]">*</span>
                 </label>
                 <div className="relative">
                     <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#737373]" />
@@ -94,7 +94,7 @@ export default function CreateLinkForm() {
 
             <div>
                 <label className="block text-xs font-bold uppercase tracking-widest text-[#a3a3a3] mb-2">
-                    Destination URL <span className="text-[#ff6b4a]">*</span>
+                    Destination URL <span className="text-[#ffffff]">*</span>
                 </label>
                 <div className="relative">
                     <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#737373]" />
@@ -110,7 +110,7 @@ export default function CreateLinkForm() {
                     Custom slug <span className="text-[#737373] font-semibold">(optional)</span>
                 </label>
                 <div className="flex">
-                    <span className="px-3 py-3 bg-[#1a1a19] border-2 border-r-0 border-[#f4f2e9] rounded-l-lg text-xs font-bold text-[#a3a3a3] whitespace-nowrap flex items-center">
+                    <span className="px-3 py-3 bg-[#1c1c1c] border border-r-0 border-[#2b2b2b] rounded-l-lg text-xs font-bold text-[#a3a3a3] whitespace-nowrap flex items-center">
                         /r/
                     </span>
                     <div className="relative flex-1">
@@ -128,12 +128,12 @@ export default function CreateLinkForm() {
 
             <div>
                 <button type="button" id="utm-toggle" onClick={() => setShowUtm(!showUtm)}
-                    className="flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-[#ff6b4a] hover:text-[#e55a3b] transition-colors">
+                    className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-widest text-[#ffffff] hover:text-[#e5e5e5] transition-colors">
                     {showUtm ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     UTM parameters
                 </button>
                 {showUtm && (
-                    <div className="mt-4 grid grid-cols-3 gap-3 p-4 bg-[#1a1a19] border-2 border-dashed border-[#262626] rounded-xl">
+                    <div className="mt-4 grid grid-cols-3 gap-3 p-4 bg-[#1c1c1c] border border-solid border-[#262626] rounded-xl">
                         {[
                             { key: "utm_source", label: "Source", placeholder: "instagram" },
                             { key: "utm_medium", label: "Medium", placeholder: "social" },
@@ -152,13 +152,13 @@ export default function CreateLinkForm() {
             </div>
 
             {error && (
-                <p className="text-xs font-bold text-[#0d0d0c] bg-[#ff4a4a] border-2 border-[#ff4a4a] rounded-lg px-3 py-2 shadow-[2px_2px_0_#f4f2e9]">
+                <p className="text-xs font-bold text-[#111111] bg-[#ef4444] border border-[#ef4444] rounded-lg px-3 py-2 shadow-md">
                     {error}
                 </p>
             )}
 
             <button id="create-link-submit" type="submit" disabled={loading}
-                className="btn-primary w-full flex items-center justify-center gap-2 px-5 py-3 text-sm disabled:opacity-60 shadow-[4px_4px_0_#f4f2e9] hover:shadow-[6px_6px_0_#f4f2e9]">
+                className="btn-primary w-full flex items-center justify-center gap-2 px-5 py-3 text-sm disabled:opacity-60 shadow-md hover:shadow-md">
                 {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Creating…</> : <><Link2 className="w-4 h-4" /> Create link</>}
             </button>
         </form>

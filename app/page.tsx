@@ -4,12 +4,12 @@ import HeroText from "@/components/landing/HeroText";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[#0d0d0c] text-[#f4f2e9] font-sans selection:bg-[#ff6b4a] selection:text-white pb-32">
+    <div className="min-h-screen bg-[#111111] text-[#e5e5e5] font-sans selection:bg-[#2b2b2b] selection:text-white pb-32">
       {/* Navbar */}
       <nav className="absolute top-0 w-full z-20">
         <div className="max-w-[1400px] mx-auto px-6 h-24 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <div className="px-3 py-1.5 bg-[#f4f2e9] text-[#0d0d0c] rounded uppercase font-black tracking-tight transform -skew-y-2 border-2 border-dashed border-[#0d0d0c] shadow-[4px_4px_0_#ff6b4a] text-lg">
+            <div className="px-3 py-1.5 bg-[#1c1c1c] text-white rounded font-medium tracking-wide border border-[#2b2b2b] shadow-sm text-lg">
               CLIXY™
             </div>
           </Link>
@@ -29,7 +29,7 @@ export default function LandingPage() {
             </Link>
             <Link
               href="/signup"
-              className="hidden sm:inline-block px-5 py-2.5 text-sm font-bold bg-transparent border-2 border-[#f4f2e9] text-[#f4f2e9] rounded-full hover:bg-[#f4f2e9] hover:text-[#0d0d0c] transition-all uppercase tracking-wide"
+              className="hidden sm:inline-block px-5 py-2.5 text-sm font-medium bg-transparent border border-[#2b2b2b] text-[#e5e5e5] rounded-full hover:bg-[#2b2b2b] transition-all tracking-wide"
             >
               Start Free
             </Link>
@@ -47,14 +47,14 @@ export default function LandingPage() {
         </div>
 
         <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mt-6 mb-10 leading-relaxed z-10 font-medium px-4">
-          Turn <span className="text-[#f4f2e9] font-bold">Links into Insights</span> and <span className="text-[#f4f2e9] font-bold">Clicks into Growth</span> — with powerful tracking analytics.
+          Turn <span className="text-white font-medium">Links into Insights</span> and <span className="text-white font-medium">Clicks into Growth</span> — with powerful tracking analytics.
         </p>
 
         <div className="z-10 relative group">
-          <div className="absolute inset-0 bg-[#2dec59] blur-xl opacity-30 group-hover:opacity-60 transition-opacity duration-500 rounded-full" />
+          <div className="absolute inset-0 bg-white blur-xl opacity-10 group-hover:opacity-20 transition-opacity duration-500 rounded-full" />
           <Link
             href="/signup"
-            className="flex items-center gap-2 px-8 py-4 bg-[#2dec59] hover:bg-[#28d750] text-[#0d0d0c] rounded-full font-black text-lg transition-transform hover:scale-105 active:scale-95 uppercase tracking-wide"
+            className="flex items-center gap-2 px-8 py-4 bg-white hover:bg-[#e5e5e5] text-[#111111] rounded-full font-medium text-lg transition-transform hover:scale-105 active:scale-95 tracking-wide shadow-lg"
           >
             Start Tracking Now
           </Link>
@@ -65,7 +65,7 @@ export default function LandingPage() {
       <section className="mt-32 w-full overflow-hidden border-t border-white/5 pt-12">
         <div className="flex max-w-[1400px] mx-auto px-6 opacity-40 justify-between items-center grayscale gap-8 flex-wrap">
           {["Instagram", "YouTube", "TikTok", "Snapchat", "WhatsApp", "Facebook"].map(platform => (
-            <div key={platform} className="text-2xl font-bold uppercase tracking-tight text-white hover:text-[#ff6b4a] hover:grayscale-0 transition-all cursor-crosshair">
+            <div key={platform} className="text-2xl font-medium tracking-tight text-[#737373] hover:text-white transition-all">
               {platform}
             </div>
           ))}

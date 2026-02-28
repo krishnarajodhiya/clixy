@@ -2,17 +2,17 @@
 
 :root {
   --font-inter: "Inter", sans-serif;
-  --accent: #ff6b4a;
-  --accent-hover: #e55a3b;
-  --accent-light: #52ff7a;
-  --accent-border: #f4f2e9;
-  --text-primary: #f4f2e9;
+  --accent: #e5e5e5;
+  --accent-hover: #ffffff;
+  --accent-light: #2b2b2b;
+  --accent-border: #2b2b2b;
+  --text-primary: #e5e5e5;
   --text-secondary: #a3a3a3;
   --text-muted: #737373;
-  --border: #f4f2e9;
-  --surface: #171716;
-  --card: #0d0d0c;
-  --bg: #0d0d0c;
+  --border: #2b2b2b;
+  --surface: #161616;
+  --card: #1c1c1c;
+  --bg: #111111;
 }
 
 * {
@@ -28,27 +28,24 @@ body {
   background: var(--bg);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
-  /* Add subtle grain/noise */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0d0d0c;
-  border-left: 2px solid #f4f2e9;
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #f4f2e9;
-  border: 2px solid #0d0d0c;
+  background: var(--border);
+  border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff6b4a;
+  background: var(--text-muted);
 }
 
 /* Animations */
@@ -57,7 +54,6 @@ body {
     opacity: 0;
     transform: translateY(10px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -68,93 +64,89 @@ body {
   0% {
     background-position: -200% 0;
   }
-
   100% {
     background-position: 200% 0;
   }
 }
 
 .animate-fade-up {
-  animation: fadeUp 0.35s ease-out forwards;
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #171716 25%, #262626 50%, #171716 75%);
+  background: linear-gradient(90deg, #161616 25%, #2b2b2b 50%, #161616 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.4s infinite;
+  animation: shimmer 1.5s infinite;
 }
 
-/* Card - Neobrutalism Style */
+/* Card */
 .card {
   background: var(--surface);
-  border: 2px solid var(--border);
-  border-radius: 8px;
-  box-shadow: 4px 4px 0 var(--border);
-}
-
-.card-hover {
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .card-hover:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.5);
+  border-color: var(--text-muted);
 }
 
-/* Button accent */
+/* Button */
 .btn-primary {
   background: var(--accent);
-  color: #0d0d0c;
-  border: 2px solid var(--border);
+  color: #111111;
+  border: 1px solid transparent;
   border-radius: 8px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  box-shadow: 4px 4px 0 var(--border);
-  transition: all 0.15s ease;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-primary:hover {
   background: var(--accent-hover);
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--border);
+  transform: scale(1.02);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
 }
 
 .btn-primary:active {
-  transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0 var(--border);
+  transform: scale(0.98);
 }
 
 /* Input */
 .input-base {
-  background: #0d0d0c;
-  border: 2px solid var(--border);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
   color: var(--text-primary);
-  font-weight: 600;
-  box-shadow: 4px 4px 0 rgba(244, 242, 233, 0.2);
-  transition: all 0.15s ease;
+  font-weight: 400;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
 }
 
 .input-base:focus {
   outline: none;
-  border-color: var(--accent-light);
-  box-shadow: 4px 4px 0 var(--accent-light);
-  transform: translate(-2px, -2px);
+  border-color: var(--text-secondary);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
 }
 
 .input-base::placeholder {
   color: var(--text-muted);
-  font-weight: 500;
 }
 
 /* Select */
 select.input-base {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23f4f2e9'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-  background-position: right 0.75rem center;
-  background-size: 1.25rem 1.25rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23a3a3a3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-position: right 1rem center;
+  background-size: 1rem 1rem;
   background-repeat: no-repeat;
+  padding-right: 2.5rem;
 }
 
 /* Badge */
@@ -162,36 +154,45 @@ select.input-base {
   display: inline-flex;
   align-items: center;
   padding: 4px 10px;
-  border: 2px dashed var(--border);
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  background: #0d0d0c;
-  color: var(--accent-light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--surface);
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
 }
 
-/* Table fixes for dark theme */
+/* Tables */
 th {
-  color: var(--text-muted) !important;
-  border-bottom: 2px dashed var(--border) !important;
+  color: var(--text-secondary) !important;
+  border-bottom: 1px solid var(--border) !important;
+  font-weight: 500 !important;
+  padding-bottom: 0.5rem;
 }
 
 tr {
-  border-bottom: 1px solid #262626 !important;
+  border-bottom: 1px solid var(--border) !important;
+  transition: background-color 0.2s ease;
 }
 
 tr:hover {
-  background-color: #1a1a19 !important;
+  background-color: var(--surface) !important;
 }
 
 td {
   color: var(--text-primary) !important;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 /* Links */
 a {
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 1px;
   text-underline-offset: 4px;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
 }

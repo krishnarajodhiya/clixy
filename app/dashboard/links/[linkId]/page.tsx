@@ -56,22 +56,22 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
                 {/* Back + link info */}
                 <div>
                     <Link href="/dashboard/links"
-                        className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#a3a3a3] hover:text-[#ff6b4a] hover:-translate-x-1 mb-4 transition-all">
+                        className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#a3a3a3] hover:text-[#ffffff] hover:-translate-x-1 mb-4 transition-all">
                         <ArrowLeft className="w-4 h-4" /> Back to links
                     </Link>
 
-                    <div className="card rounded-xl p-5 border-2 border-dashed border-[#f4f2e9] bg-[#0d0d0c]">
+                    <div className="card rounded-xl p-5 border border-solid border-[#2b2b2b] bg-[#111111]">
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <div className="flex-1 min-w-0">
-                                <h2 className="text-lg font-black uppercase tracking-wider text-[#f4f2e9] mb-1">{link.name}</h2>
+                                <h2 className="text-lg font-medium uppercase tracking-wider text-[#e5e5e5] mb-1">{link.name}</h2>
                                 <div className="flex items-center gap-2">
-                                    <span className="text-sm font-bold text-[#52ff7a]">{shortUrl}</span>
+                                    <span className="text-sm font-bold text-[#e5e5e5]">{shortUrl}</span>
                                     <CopyButton text={shortUrl} />
                                 </div>
                                 <p className="text-xs font-semibold tracking-wider text-[#a3a3a3] mt-2 truncate">→ {link.destination_url}</p>
                             </div>
                             <a href={link.destination_url} target="_blank" rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-4 py-2 bg-[#0d0d0c] border-2 border-[#f4f2e9] hover:shadow-[3px_3px_0_#ff6b4a] hover:-translate-y-0.5 text-[#f4f2e9] rounded-lg text-xs font-bold uppercase tracking-wider transition-all flex-shrink-0">
+                                className="flex items-center gap-2 px-4 py-2 bg-[#111111] border border-[#2b2b2b] hover:shadow-md hover:-translate-y-0.5 text-[#e5e5e5] rounded-lg text-xs font-bold uppercase tracking-wider transition-all flex-shrink-0">
                                 <ExternalLink className="w-4 h-4" /> Open destination
                             </a>
                         </div>
@@ -95,8 +95,8 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
                         { title: "By Device", data: deviceData },
                         { title: "By Country", data: countryData },
                     ].map((chart) => (
-                        <div key={chart.title} className="card rounded-xl p-5 border-2 border-dashed border-[#f4f2e9] bg-[#0d0d0c]">
-                            <p className="text-sm font-black uppercase tracking-widest text-[#a3a3a3] mb-4">{chart.title}</p>
+                        <div key={chart.title} className="card rounded-xl p-5 border border-solid border-[#2b2b2b] bg-[#111111]">
+                            <p className="text-sm font-medium uppercase tracking-widest text-[#a3a3a3] mb-4">{chart.title}</p>
                             <SimpleBarChart data={chart.data} />
                         </div>
                     ))}
@@ -104,16 +104,16 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
 
                 {/* Platform breakdown bar */}
                 {platformData.length > 0 && (
-                    <div className="card rounded-xl p-5 border-2 border-dashed border-[#f4f2e9] bg-[#0d0d0c]">
-                        <p className="text-sm font-black uppercase tracking-widest text-[#a3a3a3] mb-5">Platform breakdown</p>
+                    <div className="card rounded-xl p-5 border border-solid border-[#2b2b2b] bg-[#111111]">
+                        <p className="text-sm font-medium uppercase tracking-widest text-[#a3a3a3] mb-5">Platform breakdown</p>
                         <div className="space-y-4">
                             {platformData.map((p) => {
                                 const pct = totalClicks > 0 ? Math.round((p.count / totalClicks) * 100) : 0;
                                 return (
                                     <div key={p.name} className="flex items-center gap-4">
-                                        <div className="w-24 text-xs font-bold uppercase tracking-widest text-[#f4f2e9] truncate">{p.name}</div>
-                                        <div className="flex-1 bg-[#1a1a19] border-2 border-[#1a1a19] rounded-full h-3 overflow-hidden">
-                                            <div className="h-full rounded-full bg-[#ff6b4a] shadow-[0_0_10px_#ff6b4a] transition-all duration-500" style={{ width: `${pct}%` }} />
+                                        <div className="w-24 text-xs font-bold uppercase tracking-widest text-[#e5e5e5] truncate">{p.name}</div>
+                                        <div className="flex-1 bg-[#1c1c1c] border border-[#1c1c1c] rounded-full h-3 overflow-hidden">
+                                            <div className="h-full rounded-full bg-[#ffffff] shadow-md transition-all duration-500" style={{ width: `${pct}%` }} />
                                         </div>
                                         <div className="w-16 text-right text-xs font-bold text-[#a3a3a3]">{p.count} <span className="text-[#737373]">({pct}%)</span></div>
                                     </div>
@@ -124,9 +124,9 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
                 )}
 
                 {/* Recent clicks */}
-                <div className="card rounded-xl border-2 border-dashed border-[#f4f2e9] bg-[#0d0d0c]">
-                    <div className="flex items-center justify-between gap-4 p-5 border-b-2 border-dashed border-[#f4f2e9]">
-                        <p className="text-sm font-black uppercase tracking-widest text-[#f4f2e9]">
+                <div className="card rounded-xl border border-solid border-[#2b2b2b] bg-[#111111]">
+                    <div className="flex items-center justify-between gap-4 p-5 border-b border-solid border-[#2b2b2b]">
+                        <p className="text-sm font-medium uppercase tracking-widest text-[#e5e5e5]">
                             Recent clicks <span className="text-[#737373] ml-2">({Math.min(allClicks.length, 50)} of {totalClicks})</span>
                         </p>
                         <RefreshButton />

@@ -58,11 +58,11 @@ export default function SignupPage() {
     }
 
     return (
-        <div className="min-h-screen bg-[#0d0d0c] flex flex-col">
+        <div className="min-h-screen bg-[#111111] flex flex-col">
             {/* Top bar */}
-            <div className="px-6 py-4 border-b-2 border-dashed border-[#f4f2e9] bg-[#0d0d0c]">
+            <div className="px-6 py-4 border-b border-solid border-[#2b2b2b] bg-[#111111]">
                 <Link href="/" className="flex items-center gap-2 w-fit">
-                    <div className="px-2 py-1 bg-[#f4f2e9] text-[#0d0d0c] rounded uppercase font-black tracking-tight transform -skew-y-2 border-2 border-dashed border-[#0d0d0c] shadow-[2px_2px_0_#ff6b4a] text-sm">
+                    <div className="px-2 py-1 bg-[#e5e5e5] text-[#111111] rounded uppercase font-medium tracking-tight  border border-solid border-[#111111] shadow-md text-sm">
                         CLIXY™
                     </div>
                 </Link>
@@ -71,16 +71,16 @@ export default function SignupPage() {
             <div className="flex-1 flex items-center justify-center px-4 py-12">
                 <div className="w-full max-w-sm animate-fade-up">
                     <div className="mb-7 text-center">
-                        <h1 className="text-2xl font-black uppercase tracking-wider text-[#f4f2e9]">Create your account</h1>
+                        <h1 className="text-2xl font-medium uppercase tracking-wider text-[#e5e5e5]">Create your account</h1>
                         <p className="text-sm font-semibold text-[#a3a3a3] mt-2">
                             Already have an account?{" "}
-                            <Link href="/login" className="text-[#ff6b4a] hover:text-[#e55a3b] font-bold uppercase tracking-wider">
+                            <Link href="/login" className="text-[#ffffff] hover:text-[#e5e5e5] font-bold uppercase tracking-wider">
                                 Sign in
                             </Link>
                         </p>
                     </div>
 
-                    <div className="card rounded-xl p-6 border-2 border-dashed border-[#f4f2e9] bg-[#0d0d0c]">
+                    <div className="card rounded-xl p-6 border border-solid border-[#2b2b2b] bg-[#111111]">
                         <form onSubmit={handleSubmit} className="space-y-5">
                             <div>
                                 <label className="block text-xs font-bold uppercase tracking-widest text-[#a3a3a3] mb-2">
@@ -118,7 +118,7 @@ export default function SignupPage() {
                                     <button
                                         type="button"
                                         onClick={() => setShowPassword(!showPassword)}
-                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#737373] hover:text-[#f4f2e9]"
+                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#737373] hover:text-[#e5e5e5]"
                                     >
                                         {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                                     </button>
@@ -144,7 +144,7 @@ export default function SignupPage() {
                             </div>
 
                             {error && (
-                                <p className="text-xs font-bold text-[#0d0d0c] bg-[#ff4a4a] border-2 border-[#ff4a4a] rounded-lg px-3 py-2 shadow-[2px_2px_0_#f4f2e9]">
+                                <p className="text-xs font-bold text-[#111111] bg-[#ef4444] border border-[#ef4444] rounded-lg px-3 py-2 shadow-md">
                                     {error}
                                 </p>
                             )}

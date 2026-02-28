@@ -51,8 +51,8 @@ export default function HeroText({ firstLine, secondLine }: HeroTextProps) {
             ref={containerRef}
             className={`${robotoFlex.className} flex flex-col items-center justify-center py-10 select-none cursor-default w-full`}
         >
-            {renderLine(firstLine, "text-[#ff6b4a]")}
-            {renderLine(secondLine, "text-[#f4f2e9]")}
+            {renderLine(firstLine, "text-[#ffffff]")}
+            {renderLine(secondLine, "text-[#e5e5e5]")}
         </div>
     );
 }

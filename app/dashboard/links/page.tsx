@@ -51,18 +51,18 @@ export default async function LinksPage() {
                     <Link
                         href="/dashboard/links/create"
                         id="create-new-link-btn"
-                        className="btn-primary flex items-center gap-2 px-5 py-3 text-xs w-auto shadow-[4px_4px_0_#f4f2e9] hover:shadow-[6px_6px_0_#f4f2e9]"
+                        className="btn-primary flex items-center gap-2 px-5 py-3 text-xs w-auto shadow-md hover:shadow-md"
                     >
                         <Plus className="w-4 h-4" /> New Link
                     </Link>
                 </div>
 
                 {linksWithCounts.length === 0 ? (
-                    <div className="card rounded-xl border-2 border-dashed border-[#f4f2e9] bg-[#0d0d0c] flex flex-col items-center justify-center py-24 text-center">
-                        <div className="w-16 h-16 rounded-xl bg-[#0d0d0c] border-2 border-[#f4f2e9] shadow-[4px_4px_0_#ff6b4a] flex items-center justify-center mb-6">
-                            <Link2 className="w-8 h-8 text-[#52ff7a]" />
+                    <div className="card rounded-xl border border-solid border-[#2b2b2b] bg-[#111111] flex flex-col items-center justify-center py-24 text-center">
+                        <div className="w-16 h-16 rounded-xl bg-[#111111] border border-[#2b2b2b] shadow-md flex items-center justify-center mb-6">
+                            <Link2 className="w-8 h-8 text-[#e5e5e5]" />
                         </div>
-                        <h3 className="text-xl font-black uppercase tracking-widest text-[#f4f2e9] mb-2">
+                        <h3 className="text-xl font-medium uppercase tracking-widest text-[#e5e5e5] mb-2">
                             No links yet
                         </h3>
                         <p className="text-[#a3a3a3] font-semibold uppercase tracking-wider text-xs mb-8 max-w-md mx-auto leading-relaxed">
@@ -70,7 +70,7 @@ export default async function LinksPage() {
                         </p>
                         <Link
                             href="/dashboard/links/create"
-                            className="btn-primary flex items-center gap-2 px-6 py-3 text-xs w-auto shadow-[4px_4px_0_#f4f2e9] hover:shadow-[6px_6px_0_#f4f2e9]"
+                            className="btn-primary flex items-center gap-2 px-6 py-3 text-xs w-auto shadow-md hover:shadow-md"
                         >
                             <Plus className="w-4 h-4" /> Create First Link
                         </Link>
