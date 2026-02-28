@@ -10,15 +10,17 @@ interface StatsCardProps {
 
 export default function StatsCard({ title, value, subtitle, icon: Icon, iconColor = "text-text-primary" }: StatsCardProps) {
     return (
-        <div className="card card-hover rounded-xl p-5 border border-solid border-border bg-bg">
-            <div className="flex items-start justify-between mb-4">
-                <div className="w-10 h-10 rounded-lg bg-surface border border-border shadow-md flex items-center justify-center">
-                    <Icon className={cn("w-5 h-5", iconColor)} />
+        <div className="card rounded-2xl p-5 sm:p-6 border border-border bg-surface hover:border-text-muted hover:shadow-lg transition-all duration-300">
+            <div className="flex items-center justify-between mb-4">
+                <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-text-secondary">{title}</p>
+                <div className="w-8 h-8 rounded-lg bg-bg border border-border shadow-sm flex items-center justify-center flex-shrink-0">
+                    <Icon className={cn("w-4 h-4", iconColor)} />
                 </div>
             </div>
-            <p className="text-3xl font-medium text-text-primary mb-1">{value}</p>
-            <p className="text-sm font-bold uppercase tracking-widest text-text-secondary">{title}</p>
-            {subtitle && <p className="text-xs font-semibold uppercase tracking-wider text-text-muted mt-1">{subtitle}</p>}
+            <div>
+                <p className="text-3xl sm:text-4xl font-semibold tracking-tight text-text-primary mb-1">{value}</p>
+                {subtitle && <p className="text-xs font-medium uppercase tracking-wider text-text-muted">{subtitle}</p>}
+            </div>
         </div>
     );
 }

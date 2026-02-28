@@ -30,9 +30,9 @@ export default async function DashboardPage() {
     return (
         <div>
             <DashboardHeader title="Overview" />
-            <div className="p-6 space-y-6">
+            <div className="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8 max-w-7xl mx-auto">
                 {/* Stats */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                     <StatsCard title="Total Links" value={totalLinks} icon={Link2} subtitle="Created" iconColor="text-blue-500" />
                     <StatsCard title="Total Clicks" value={totalClicks} icon={MousePointerClick} subtitle="All links" iconColor="text-green-500" />
                     <StatsCard title="Mobile" value={mobileClicks} icon={Smartphone}
@@ -41,41 +41,43 @@ export default async function DashboardPage() {
                 </div>
 
                 {/* Recent Links */}
-                <div className="card rounded-xl border border-solid border-border bg-bg">
-                    <div className="flex items-center justify-between px-5 py-4 border-b border-solid border-border">
-                        <p className="text-sm font-medium uppercase tracking-widest text-text-primary">Recent links</p>
-                        <Link href="/dashboard/links" className="text-xs text-[#ffffff] hover:text-text-primary font-bold uppercase tracking-wider flex items-center gap-1 transition-colors">
+                <div className="card rounded-2xl border border-border bg-surface overflow-hidden">
+                    <div className="flex items-center justify-between px-5 py-4 sm:px-6 sm:py-5 border-b border-border bg-bg/50">
+                        <h2 className="text-sm sm:text-base font-semibold text-text-primary">Recent Links</h2>
+                        <Link href="/dashboard/links" className="text-xs sm:text-sm text-accent hover:text-accent-hover font-medium flex items-center gap-1 transition-colors">
                             View all <ArrowRight className="w-4 h-4" />
                         </Link>
                     </div>
 
                     {recentLinks.length === 0 ? (
-                        <div className="flex flex-col items-center justify-center py-16 text-center px-6">
-                            <div className="w-12 h-12 rounded-xl bg-surface dark:bg-surface-hover border border-border shadow-md flex items-center justify-center mb-4">
-                                <Link2 className="w-6 h-6 text-text-primary" />
+                        <div className="flex flex-col items-center justify-center py-12 sm:py-16 text-center px-6">
+                            <div className="w-12 h-12 rounded-xl bg-bg border border-border shadow-sm flex items-center justify-center mb-4">
+                                <Link2 className="w-6 h-6 text-text-muted" />
                             </div>
-                            <p className="text-sm font-medium uppercase tracking-widest text-text-primary mb-1">No links yet</p>
-                            <p className="text-xs font-semibold uppercase tracking-wider text-text-secondary mb-6">Create your first tracking link to start</p>
+                            <h3 className="text-base font-semibold text-text-primary mb-1">No links created yet</h3>
+                            <p className="text-sm text-text-secondary mb-6 max-w-sm">Create your first shortened link to start tracking clicks and geography.</p>
                             <Link href="/dashboard/links/create"
                                 className="btn-primary flex items-center gap-1.5 px-6 py-3 text-xs w-auto shadow-md hover:shadow-md">
                                 <Plus className="w-4 h-4" /> Create link
                             </Link>
                         </div>
                     ) : (
-                        <div className="divide-y divide-dashed divide-border">
+                        <div className="divide-y divide-border">
                             {recentLinks.map((link) => (
-                                <div key={link.id} className="flex items-center justify-between px-5 py-4 hover:bg-surface-hover transition-colors">
+                                <div key={link.id} className="flex items-center justify-between px-5 py-4 sm:px-6 sm:py-5 hover:bg-surface-hover transition-colors group">
                                     <div className="flex-1 min-w-0 mr-4">
-                                        <p className="text-sm font-bold text-text-primary truncate">{link.name}</p>
-                                        <p className="text-xs font-mono font-semibold text-text-secondary truncate mt-1">/r/{link.slug}</p>
+                                        <p className="text-sm sm:text-base font-medium text-text-primary truncate">{link.name}</p>
+                                        <div className="flex items-center gap-2 mt-1">
+                                            <p className="text-xs sm:text-sm text-text-muted truncate">/r/{link.slug}</p>
+                                        </div>
                                     </div>
-                                    <div className="flex items-center gap-4">
+                                    <div className="flex items-center gap-3 sm:gap-6">
                                         <div className="text-right">
-                                            <p className="text-sm font-medium text-text-primary">{link.click_count}</p>
-                                            <p className="text-[10px] font-bold uppercase tracking-widest text-text-muted">clicks</p>
+                                            <p className="text-sm sm:text-base font-semibold text-text-primary">{link.click_count}</p>
+                                            <p className="text-[10px] sm:text-xs text-text-muted uppercase tracking-wider">clicks</p>
                                         </div>
                                         <Link href={`/dashboard/links/${link.id}`}
-                                            className="p-2 rounded-lg hover:bg-surface-hover text-text-secondary hover:text-accent-hover border border-transparent hover:border-accent transition-all">
+                                            className="p-2 sm:p-2.5 rounded-xl bg-bg border border-border text-text-secondary hover:text-accent hover:border-accent shadow-sm transition-all sm:opacity-0 sm:-translate-x-2 group-hover:opacity-100 group-hover:translate-x-0">
                                             <ArrowRight className="w-4 h-4" />
                                         </Link>
                                     </div>
@@ -86,21 +88,23 @@ export default async function DashboardPage() {
                 </div>
 
                 {/* Quick actions */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     {[
-                        { href: "/dashboard/links/create", icon: Plus, title: "Create new link", sub: "Set up tracking in seconds" },
-                        { href: "/dashboard/links", icon: Link2, title: "Manage links", sub: "View and edit all your links" },
+                        { href: "/dashboard/links/create", icon: Plus, title: "Create new link", sub: "Set up tracking instantly" },
+                        { href: "/dashboard/links", icon: Link2, title: "Manage links", sub: "View and edit all links" },
                     ].map((a) => (
                         <Link key={a.href} href={a.href}
-                            className="card card-hover rounded-xl p-5 flex items-center gap-4 group border border-solid border-border bg-bg">
-                            <div className="w-10 h-10 rounded-xl bg-surface dark:bg-surface-hover border border-border shadow-md group-hover:shadow-md transition-shadow flex items-center justify-center flex-shrink-0">
-                                <a.icon className="w-5 h-5 text-text-primary" />
+                            className="card rounded-2xl p-5 sm:p-6 flex items-center gap-4 group border border-border bg-surface hover:border-text-muted hover:shadow-lg transition-all duration-300">
+                            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-bg border border-border shadow-sm flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                                <a.icon className="w-5 h-5 sm:w-6 sm:h-6 text-text-primary group-hover:text-accent transition-colors" />
                             </div>
                             <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium uppercase tracking-widest text-text-primary">{a.title}</p>
-                                <p className="text-xs font-semibold uppercase tracking-wider text-text-secondary mt-1">{a.sub}</p>
+                                <p className="text-sm sm:text-base font-semibold text-text-primary mb-0.5">{a.title}</p>
+                                <p className="text-xs sm:text-sm text-text-secondary truncate">{a.sub}</p>
                             </div>
-                            <ArrowRight className="w-5 h-5 text-text-muted group-hover:text-accent-hover transition-colors" />
+                            <div className="w-8 h-8 rounded-full bg-bg border border-border flex items-center justify-center flex-shrink-0 group-hover:bg-accent group-hover:border-accent transition-colors">
+                                <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-white transition-colors" />
+                            </div>
                         </Link>
                     ))}
                 </div>
