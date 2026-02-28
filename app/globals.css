@@ -177,7 +177,6 @@ body {
   border-radius: 8px;
   color: var(--text-primary);
   font-weight: 400;
-  padding: 0.5rem 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
 }
