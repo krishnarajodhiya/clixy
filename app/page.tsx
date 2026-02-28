@@ -134,7 +134,7 @@ export default function LandingPage() {
           <div className="card p-8 rounded-2xl border border-border bg-surface">
             <h3 className="text-2xl font-medium text-text-primary mb-2">Starter</h3>
             <p className="text-text-secondary mb-6">Perfect for side projects and individuals.</p>
-            <p className="text-4xl font-medium text-text-primary mb-8">$0<span className="text-lg text-text-muted">/mo</span></p>
+            <p className="text-4xl font-medium text-text-primary mb-8">₹0<span className="text-lg text-text-muted">/mo</span></p>
             <ul className="space-y-4 mb-8 text-text-primary">
               <li className="flex items-center gap-3"><span className="text-accent">✓</span> Up to 50 links</li>
               <li className="flex items-center gap-3"><span className="text-accent">✓</span> Basic analytics</li>
@@ -146,7 +146,7 @@ export default function LandingPage() {
             <div className="absolute top-0 right-8 -translate-y-1/2 bg-accent text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Most Popular</div>
             <h3 className="text-2xl font-medium text-text-primary mb-2">Pro</h3>
             <p className="text-text-secondary mb-6">For power users and growing businesses.</p>
-            <p className="text-4xl font-medium text-text-primary mb-8">$9<span className="text-lg text-text-muted">/mo</span></p>
+            <p className="text-4xl font-medium text-text-primary mb-8">₹499<span className="text-lg text-text-muted">/mo</span></p>
             <ul className="space-y-4 mb-8 text-text-primary">
               <li className="flex items-center gap-3"><span className="text-accent">✓</span> Unlimited links</li>
               <li className="flex items-center gap-3"><span className="text-accent">✓</span> Advanced real-time analytics</li>
