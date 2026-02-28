@@ -36,10 +36,17 @@ export default function SignupPage() {
             const timeout = new Promise<never>((_, reject) =>
                 setTimeout(() => reject(new Error("Connection timed out. Supabase may be starting up — try again in 30 seconds.")), 8000)
             );
+            const displayName = email.split("@")[0];
             const signUpResult = supabase.auth.signUp({
                 email,
                 password,
-                options: { emailRedirectTo: `${window.location.origin}/dashboard` },
+                options: {
+                    emailRedirectTo: `${window.location.origin}/dashboard`,
+                    data: {
+                        full_name: displayName,
+                        display_name: displayName,
+                    }
+                },
             });
             const { error } = await Promise.race([signUpResult, timeout]) as Awaited<typeof signUpResult>;
 
