@@ -23,7 +23,9 @@ export default function HeroText({ firstLine, secondLine }: HeroTextProps) {
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, []);
 
-    const renderLine = (text: string, colorClass: string) => {
+    let characterCount = 0;
+
+    const renderLine = (text: string) => {
         return (
             <div
                 className="flex justify-center items-center leading-none uppercase tracking-tighter"
@@ -32,13 +34,17 @@ export default function HeroText({ firstLine, secondLine }: HeroTextProps) {
             >
                 {text.split("").map((char, i) => {
                     if (char === " ") return <span key={i} className="w-3 md:w-6 lg:w-10" />;
+
+                    const idx = characterCount;
+                    characterCount++;
+
                     return (
                         <InteractiveLetter
                             key={i}
                             char={char}
                             mousePos={mousePos}
-                            colorClass={colorClass}
                             isContainerHovered={isHovering}
+                            colorIndex={idx}
                         />
                     );
                 })}
@@ -49,24 +55,35 @@ export default function HeroText({ firstLine, secondLine }: HeroTextProps) {
     return (
         <div
             ref={containerRef}
-            className={`${robotoFlex.className} flex flex-col items-center justify-center py-10 select-none cursor-default w-full`}
+            className={`${robotoFlex.className} flex flex-col items-center justify-center py-10 select-none cursor-default w-full text-text-primary transition-colors duration-500`}
         >
-            {renderLine(firstLine, "text-[#ffffff]")}
-            {renderLine(secondLine, "text-text-primary")}
+            {renderLine(firstLine)}
+            {renderLine(secondLine)}
         </div>
     );
 }
 
+const PALETTE = [
+    "#ef4444", // red
+    "#f97316", // orange
+    "#eab308", // yellow
+    "#22c55e", // green
+    "#0ea5e9", // light blue
+    "#3b82f6", // blue
+    "#8b5cf6", // purple
+    "#ec4899", // pink
+];
+
 function InteractiveLetter({
     char,
     mousePos,
-    colorClass,
-    isContainerHovered
+    isContainerHovered,
+    colorIndex
 }: {
     char: string;
     mousePos: { x: number; y: number };
-    colorClass: string;
     isContainerHovered: boolean;
+    colorIndex: number;
 }) {
     const spanRef = useRef<HTMLSpanElement>(null);
     const [distance, setDistance] = useState(1000);
@@ -107,9 +124,10 @@ function InteractiveLetter({
     return (
         <span
             ref={spanRef}
-            className={`relative inline-block transition-all duration-100 ease-out text-7xl sm:text-8xl md:text-[8rem] lg:text-[11rem] xl:text-[13rem] ${colorClass}`}
+            className={`relative inline-block transition-all duration-100 ease-out text-7xl sm:text-8xl md:text-[8rem] lg:text-[11rem] xl:text-[13rem]`}
             style={{
                 fontVariationSettings: `"wdth" ${width}, "wght" ${weight}`,
+                color: isContainerHovered ? PALETTE[colorIndex % PALETTE.length] : undefined,
             }}
         >
             {char}
