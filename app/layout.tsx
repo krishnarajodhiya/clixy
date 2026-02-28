@@ -10,10 +10,16 @@ export const metadata: Metadata = {
     "Create short tracking links and capture deep analytics on every click — platform, device, and country.",
 };
 
+import { ThemeProvider } from "@/components/ThemeProvider";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="bg-[#111111] text-[#e5e5e5] antialiased selection:bg-[#2b2b2b] selection:text-white">{children}</body>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
+      <body className="bg-bg text-text-primary antialiased selection:bg-accent selection:text-text-primary">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

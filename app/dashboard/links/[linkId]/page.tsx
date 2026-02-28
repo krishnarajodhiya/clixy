@@ -56,22 +56,22 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
                 {/* Back + link info */}
                 <div>
                     <Link href="/dashboard/links"
-                        className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#a3a3a3] hover:text-[#ffffff] hover:-translate-x-1 mb-4 transition-all">
+                        className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-text-secondary hover:text-accent-hover hover:-translate-x-1 mb-4 transition-all">
                         <ArrowLeft className="w-4 h-4" /> Back to links
                     </Link>
 
-                    <div className="card rounded-xl p-5 border border-solid border-[#2b2b2b] bg-[#111111]">
+                    <div className="card rounded-xl p-5 border border-solid border-border bg-bg">
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <div className="flex-1 min-w-0">
-                                <h2 className="text-lg font-medium uppercase tracking-wider text-[#e5e5e5] mb-1">{link.name}</h2>
+                                <h2 className="text-lg font-medium uppercase tracking-wider text-text-primary mb-1">{link.name}</h2>
                                 <div className="flex items-center gap-2">
-                                    <span className="text-sm font-bold text-[#e5e5e5]">{shortUrl}</span>
+                                    <span className="text-sm font-bold text-text-primary">{shortUrl}</span>
                                     <CopyButton text={shortUrl} />
                                 </div>
-                                <p className="text-xs font-semibold tracking-wider text-[#a3a3a3] mt-2 truncate">→ {link.destination_url}</p>
+                                <p className="text-xs font-semibold tracking-wider text-text-secondary mt-2 truncate">→ {link.destination_url}</p>
                             </div>
                             <a href={link.destination_url} target="_blank" rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-4 py-2 bg-[#111111] border border-[#2b2b2b] hover:shadow-md hover:-translate-y-0.5 text-[#e5e5e5] rounded-lg text-xs font-bold uppercase tracking-wider transition-all flex-shrink-0">
+                                className="flex items-center gap-2 px-4 py-2 bg-bg border border-border hover:shadow-md hover:-translate-y-0.5 text-text-primary rounded-lg text-xs font-bold uppercase tracking-wider transition-all flex-shrink-0">
                                 <ExternalLink className="w-4 h-4" /> Open destination
                             </a>
                         </div>
@@ -80,12 +80,12 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
 
                 {/* Stats */}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    <StatsCard title="Total Clicks" value={totalClicks} icon={MousePointerClick} />
+                    <StatsCard title="Total Clicks" value={totalClicks} icon={MousePointerClick} iconColor="text-blue-500" />
                     <StatsCard title="Desktop" value={desktopClicks} icon={Monitor}
-                        subtitle={totalClicks > 0 ? `${Math.round((desktopClicks / totalClicks) * 100)}%` : "—"} />
+                        subtitle={totalClicks > 0 ? `${Math.round((desktopClicks / totalClicks) * 100)}%` : "—"} iconColor="text-green-500" />
                     <StatsCard title="Mobile" value={mobileClicks} icon={Smartphone}
-                        subtitle={totalClicks > 0 ? `${Math.round((mobileClicks / totalClicks) * 100)}%` : "—"} />
-                    <StatsCard title="Countries" value={uniqueCountries} icon={Globe} />
+                        subtitle={totalClicks > 0 ? `${Math.round((mobileClicks / totalClicks) * 100)}%` : "—"} iconColor="text-orange-500" />
+                    <StatsCard title="Countries" value={uniqueCountries} icon={Globe} iconColor="text-purple-500" />
                 </div>
 
                 {/* Charts */}
@@ -95,8 +95,8 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
                         { title: "By Device", data: deviceData },
                         { title: "By Country", data: countryData },
                     ].map((chart) => (
-                        <div key={chart.title} className="card rounded-xl p-5 border border-solid border-[#2b2b2b] bg-[#111111]">
-                            <p className="text-sm font-medium uppercase tracking-widest text-[#a3a3a3] mb-4">{chart.title}</p>
+                        <div key={chart.title} className="card rounded-xl p-5 border border-solid border-border bg-bg">
+                            <p className="text-sm font-medium uppercase tracking-widest text-text-secondary mb-4">{chart.title}</p>
                             <SimpleBarChart data={chart.data} />
                         </div>
                     ))}
@@ -104,18 +104,18 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
 
                 {/* Platform breakdown bar */}
                 {platformData.length > 0 && (
-                    <div className="card rounded-xl p-5 border border-solid border-[#2b2b2b] bg-[#111111]">
-                        <p className="text-sm font-medium uppercase tracking-widest text-[#a3a3a3] mb-5">Platform breakdown</p>
+                    <div className="card rounded-xl p-5 border border-solid border-border bg-bg">
+                        <p className="text-sm font-medium uppercase tracking-widest text-text-secondary mb-5">Platform breakdown</p>
                         <div className="space-y-4">
                             {platformData.map((p) => {
                                 const pct = totalClicks > 0 ? Math.round((p.count / totalClicks) * 100) : 0;
                                 return (
                                     <div key={p.name} className="flex items-center gap-4">
-                                        <div className="w-24 text-xs font-bold uppercase tracking-widest text-[#e5e5e5] truncate">{p.name}</div>
-                                        <div className="flex-1 bg-[#1c1c1c] border border-[#1c1c1c] rounded-full h-3 overflow-hidden">
-                                            <div className="h-full rounded-full bg-[#ffffff] shadow-md transition-all duration-500" style={{ width: `${pct}%` }} />
+                                        <div className="w-24 text-xs font-bold uppercase tracking-widest text-text-primary truncate">{p.name}</div>
+                                        <div className="flex-1 bg-surface-hover border border-[#1c1c1c] rounded-full h-3 overflow-hidden">
+                                            <div className="h-full rounded-full bg-surface shadow-md transition-all duration-500" style={{ width: `${pct}%` }} />
                                         </div>
-                                        <div className="w-16 text-right text-xs font-bold text-[#a3a3a3]">{p.count} <span className="text-[#737373]">({pct}%)</span></div>
+                                        <div className="w-16 text-right text-xs font-bold text-text-secondary">{p.count} <span className="text-text-muted">({pct}%)</span></div>
                                     </div>
                                 );
                             })}
@@ -124,10 +124,10 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
                 )}
 
                 {/* Recent clicks */}
-                <div className="card rounded-xl border border-solid border-[#2b2b2b] bg-[#111111]">
-                    <div className="flex items-center justify-between gap-4 p-5 border-b border-solid border-[#2b2b2b]">
-                        <p className="text-sm font-medium uppercase tracking-widest text-[#e5e5e5]">
-                            Recent clicks <span className="text-[#737373] ml-2">({Math.min(allClicks.length, 50)} of {totalClicks})</span>
+                <div className="card rounded-xl border border-solid border-border bg-bg">
+                    <div className="flex items-center justify-between gap-4 p-5 border-b border-solid border-border">
+                        <p className="text-sm font-medium uppercase tracking-widest text-text-primary">
+                            Recent clicks <span className="text-text-muted ml-2">({Math.min(allClicks.length, 50)} of {totalClicks})</span>
                         </p>
                         <RefreshButton />
                     </div>

@@ -44,7 +44,7 @@ export default async function LinksPage() {
                 {/* Header row */}
                 <div className="flex items-center justify-between mb-8">
                     <div>
-                        <p className="text-[#a3a3a3] font-bold uppercase tracking-widest text-xs">
+                        <p className="text-text-secondary font-bold uppercase tracking-widest text-xs">
                             {linksWithCounts.length} tracking link{linksWithCounts.length !== 1 ? "s" : ""}
                         </p>
                     </div>
@@ -58,14 +58,14 @@ export default async function LinksPage() {
                 </div>
 
                 {linksWithCounts.length === 0 ? (
-                    <div className="card rounded-xl border border-solid border-[#2b2b2b] bg-[#111111] flex flex-col items-center justify-center py-24 text-center">
-                        <div className="w-16 h-16 rounded-xl bg-[#111111] border border-[#2b2b2b] shadow-md flex items-center justify-center mb-6">
-                            <Link2 className="w-8 h-8 text-[#e5e5e5]" />
+                    <div className="card rounded-xl border border-solid border-border bg-bg flex flex-col items-center justify-center py-24 text-center">
+                        <div className="w-16 h-16 rounded-xl bg-bg border border-border shadow-md flex items-center justify-center mb-6">
+                            <Link2 className="w-8 h-8 text-text-primary" />
                         </div>
-                        <h3 className="text-xl font-medium uppercase tracking-widest text-[#e5e5e5] mb-2">
+                        <h3 className="text-xl font-medium uppercase tracking-widest text-text-primary mb-2">
                             No links yet
                         </h3>
-                        <p className="text-[#a3a3a3] font-semibold uppercase tracking-wider text-xs mb-8 max-w-md mx-auto leading-relaxed">
+                        <p className="text-text-secondary font-semibold uppercase tracking-wider text-xs mb-8 max-w-md mx-auto leading-relaxed">
                             Create your first tracking link to start capturing analytics from your audience.
                         </p>
                         <Link

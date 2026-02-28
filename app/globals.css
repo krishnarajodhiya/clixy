@@ -1,18 +1,63 @@
 @import "tailwindcss";
 
-:root {
+@theme {
   --font-inter: "Inter", sans-serif;
-  --accent: #e5e5e5;
-  --accent-hover: #ffffff;
-  --accent-light: #2b2b2b;
-  --accent-border: #2b2b2b;
-  --text-primary: #e5e5e5;
-  --text-secondary: #a3a3a3;
-  --text-muted: #737373;
-  --border: #2b2b2b;
-  --surface: #161616;
-  --card: #1c1c1c;
-  --bg: #111111;
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-light: var(--accent-light);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-bg: var(--bg);
+}
+
+:root {
+  --accent: #4f46e5;
+  /* indigo-600 */
+  --accent-hover: #4338ca;
+  /* indigo-700 */
+  --accent-light: #e0e7ff;
+  /* indigo-100 */
+  --text-primary: #111827;
+  /* gray-900 */
+  --text-secondary: #4b5563;
+  /* gray-600 */
+  --text-muted: #9ca3af;
+  /* gray-400 */
+  --border: #e5e7eb;
+  /* gray-200 */
+  --surface: #ffffff;
+  /* white */
+  --surface-hover: #f9fafb;
+  /* gray-50 */
+  --bg: #f9fafb;
+  /* gray-50 */
+}
+
+.dark {
+  --accent: #6366f1;
+  /* indigo-500 */
+  --accent-hover: #818cf8;
+  /* indigo-400 */
+  --accent-light: #3730a3;
+  /* indigo-800 */
+  --text-primary: #f3f4f6;
+  /* gray-100 */
+  --text-secondary: #9ca3af;
+  /* gray-400 */
+  --text-muted: #6b7280;
+  /* gray-500 */
+  --border: #374151;
+  /* gray-700 */
+  --surface: #1f2937;
+  /* gray-800 */
+  --surface-hover: #374151;
+  /* gray-700 */
+  --bg: #111827;
+  /* gray-900 - lighter dark */
 }
 
 * {
@@ -54,6 +99,7 @@ body {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -64,6 +110,7 @@ body {
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
@@ -74,7 +121,7 @@ body {
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #161616 25%, #2b2b2b 50%, #161616 75%);
+  background: linear-gradient(90deg, var(--surface) 25%, var(--border) 50%, var(--surface) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
@@ -84,20 +131,27 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.dark .card {
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
 }
 
 .card-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.5);
   border-color: var(--text-muted);
+}
+
+.dark .card-hover:hover {
+  box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.5);
 }
 
 /* Button */
 .btn-primary {
   background: var(--accent);
-  color: #111111;
+  color: #ffffff;
   border: 1px solid transparent;
   border-radius: 8px;
   font-size: 0.95rem;
@@ -110,7 +164,6 @@ body {
 .btn-primary:hover {
   background: var(--accent-hover);
   transform: scale(1.02);
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
 }
 
 .btn-primary:active {
@@ -125,14 +178,18 @@ body {
   color: var(--text-primary);
   font-weight: 400;
   padding: 0.5rem 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
+}
+
+.dark .input-base {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .input-base:focus {
   outline: none;
-  border-color: var(--text-secondary);
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
 }
 
 .input-base::placeholder {
@@ -142,7 +199,7 @@ body {
 /* Select */
 select.input-base {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23a3a3a3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='gray'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
   background-position: right 1rem center;
   background-size: 1rem 1rem;
   background-repeat: no-repeat;
@@ -177,7 +234,7 @@ tr {
 }
 
 tr:hover {
-  background-color: var(--surface) !important;
+  background-color: var(--surface-hover) !important;
 }
 
 td {
@@ -194,5 +251,5 @@ a {
 }
 
 a:hover {
-  color: var(--accent-hover);
+  color: var(--accent);
 }

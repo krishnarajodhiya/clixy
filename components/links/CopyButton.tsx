@@ -16,11 +16,11 @@ export default function CopyButton({ text }: { text: string }) {
         <button
             id="analytics-copy-btn"
             onClick={handleCopy}
-            className="p-1.5 rounded-lg border border-solid border-transparent hover:border-[#ffffff] bg-[#1c1c1c] hover:bg-[#262626] text-[#a3a3a3] hover:text-[#ffffff] transition-all"
+            className="p-1.5 rounded-lg border border-solid border-transparent hover:border-accent bg-surface-hover hover:bg-surface-hover text-text-secondary hover:text-accent-hover transition-all"
             title="Copy link"
         >
             {copied ? (
-                <CheckCheck className="w-4 h-4 text-[#e5e5e5]" />
+                <CheckCheck className="w-4 h-4 text-text-primary" />
             ) : (
                 <Copy className="w-4 h-4" />
             )}

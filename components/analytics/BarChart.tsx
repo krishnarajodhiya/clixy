@@ -9,7 +9,7 @@ interface BarChartProps {
 export default function SimpleBarChart({ data }: BarChartProps) {
     if (!data || data.length === 0) {
         return (
-            <div className="flex items-center justify-center p-8 text-[#a3a3a3] text-sm font-bold uppercase tracking-widest border border-solid border-[#262626] m-2 rounded-xl">
+            <div className="flex items-center justify-center p-8 text-text-secondary text-sm font-bold uppercase tracking-widest border border-solid border-[#262626] m-2 rounded-xl">
                 No data yet
             </div>
         );

@@ -18,9 +18,9 @@ export default function RefreshButton() {
         <button
             onClick={handleRefresh}
             disabled={isPending}
-            className="flex items-center gap-2 px-3 py-1.5 bg-[#111111] border border-solid border-[#2b2b2b] hover:border-solid hover:shadow-md hover:-translate-y-0.5 text-[#e5e5e5] rounded-lg text-xs font-bold uppercase tracking-wider transition-all disabled:opacity-50"
+            className="flex items-center gap-2 px-3 py-1.5 bg-bg border border-solid border-border hover:border-solid hover:shadow-md hover:-translate-y-0.5 text-text-primary rounded-lg text-xs font-bold uppercase tracking-wider transition-all disabled:opacity-50"
         >
-            <RefreshCw className={`w-3.5 h-3.5 ${isPending ? "animate-spin text-[#e5e5e5]" : "text-[#737373]"}`} />
+            <RefreshCw className={`w-3.5 h-3.5 ${isPending ? "animate-spin text-text-primary" : "text-text-muted"}`} />
             <span className="hidden sm:inline">Refresh</span>
         </button>
     );

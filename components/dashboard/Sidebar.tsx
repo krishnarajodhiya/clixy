@@ -32,11 +32,11 @@ export default function Sidebar() {
     return (
         <>
             {/* Desktop Sidebar */}
-            <aside className="fixed inset-y-0 left-0 z-20 w-56 hidden md:flex flex-col bg-[#111111] border-r border-solid border-[#2b2b2b]">
+            <aside className="fixed inset-y-0 left-0 z-20 w-56 hidden md:flex flex-col bg-bg border-r border-solid border-border">
                 {/* Logo */}
-                <div className="h-14 flex items-center px-5 border-b border-solid border-[#2b2b2b]">
+                <div className="h-14 flex items-center px-5 border-b border-solid border-border">
                     <Link href="/dashboard" className="flex items-center gap-2">
-                        <div className="px-2 py-1 bg-[#e5e5e5] text-[#111111] rounded uppercase font-medium tracking-tight  border border-solid border-[#111111] shadow-md text-sm">
+                        <div className="px-2 py-1 bg-surface dark:bg-surface-hover text-text-primary rounded uppercase font-medium tracking-tight  border border-solid border-border shadow-md text-sm">
                             CLIXY™
                         </div>
                     </Link>
@@ -44,7 +44,7 @@ export default function Sidebar() {
 
                 {/* Nav */}
                 <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-2">
-                    <p className="px-2 py-2 text-[10px] font-medium text-[#a3a3a3] uppercase tracking-widest">
+                    <p className="px-2 py-2 text-[10px] font-medium text-text-secondary uppercase tracking-widest">
                         Menu
                     </p>
                     {navItems.map((item) => {
@@ -59,24 +59,24 @@ export default function Sidebar() {
                                 className={cn(
                                     "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide transition-all border",
                                     active
-                                        ? "bg-[#ffffff] text-[#111111] border-[#2b2b2b] shadow-md translate-x-1"
-                                        : "bg-transparent text-[#a3a3a3] border-transparent hover:text-[#e5e5e5] hover:bg-[#1c1c1c] hover:border-[#333]"
+                                        ? "bg-surface text-text-primary border-border shadow-md translate-x-1"
+                                        : "bg-transparent text-text-secondary border-transparent hover:text-text-primary hover:bg-surface-hover hover:border-[#333]"
                                 )}
                             >
-                                <item.icon className={cn("w-4 h-4", active ? "text-[#111111]" : "text-[#a3a3a3]")} />
+                                <item.icon className={cn("w-4 h-4", active ? "text-text-primary" : "text-text-secondary")} />
                                 {item.label}
-                                {active && <ChevronRight className="w-4 h-4 ml-auto text-[#111111]" />}
+                                {active && <ChevronRight className="w-4 h-4 ml-auto text-text-primary" />}
                             </Link>
                         );
                     })}
                 </nav>
 
                 {/* Logout */}
-                <div className="p-4 border-t border-solid border-[#2b2b2b]">
+                <div className="p-4 border-t border-solid border-border">
                     <button
                         id="sidebar-logout"
                         onClick={handleLogout}
-                        className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide text-[#a3a3a3] hover:text-[#111111] hover:bg-[#ef4444] border border-transparent hover:border-[#2b2b2b] hover:shadow-md transition-all"
+                        className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide text-text-secondary hover:text-text-primary hover:bg-[#ef4444] border border-transparent hover:border-border hover:shadow-md transition-all"
                     >
                         <LogOut className="w-4 h-4" />
                         Sign out
@@ -85,7 +85,7 @@ export default function Sidebar() {
             </aside>
 
             {/* Mobile Bottom Navigation */}
-            <nav className="fixed bottom-0 left-0 right-0 z-30 bg-[#111111] border-t border-solid border-[#2b2b2b] flex md:hidden items-center justify-around h-16 px-2 pb-safe">
+            <nav className="fixed bottom-0 left-0 right-0 z-30 bg-bg border-t border-solid border-border flex md:hidden items-center justify-around h-16 px-2 pb-safe">
                 {navItems.map((item) => {
                     const active =
                         item.href === "/dashboard"
@@ -97,19 +97,19 @@ export default function Sidebar() {
                             href={item.href}
                             className={cn(
                                 "flex flex-col items-center justify-center p-2 rounded-lg text-[10px] font-medium uppercase tracking-widest transition-colors flex-1",
-                                active ? "text-[#ffffff]" : "text-[#a3a3a3] hover:text-[#e5e5e5]"
+                                active ? "text-[#ffffff]" : "text-text-secondary hover:text-text-primary"
                             )}
                         >
-                            <item.icon className={cn("w-5 h-5 mb-1", active ? "text-[#ffffff]" : "text-[#737373]")} />
+                            <item.icon className={cn("w-5 h-5 mb-1", active ? "text-[#ffffff]" : "text-text-muted")} />
                             <span className="truncate">{item.label}</span>
                         </Link>
                     );
                 })}
                 <button
                     onClick={handleLogout}
-                    className="flex flex-col items-center justify-center p-2 rounded-lg text-[10px] font-medium uppercase tracking-widest text-[#a3a3a3] hover:text-[#ef4444] transition-colors flex-1"
+                    className="flex flex-col items-center justify-center p-2 rounded-lg text-[10px] font-medium uppercase tracking-widest text-text-secondary hover:text-[#ef4444] transition-colors flex-1"
                 >
-                    <LogOut className="w-5 h-5 mb-1 text-[#737373]" />
+                    <LogOut className="w-5 h-5 mb-1 text-text-muted" />
                     <span>Sign out</span>
                 </button>
             </nav>

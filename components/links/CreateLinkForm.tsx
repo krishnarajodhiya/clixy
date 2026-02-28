@@ -68,11 +68,11 @@ export default function CreateLinkForm() {
     if (success) {
         return (
             <div className="flex flex-col items-center justify-center py-12">
-                <div className="w-12 h-12 rounded-xl bg-[#111111] border border-[#2b2b2b] shadow-md flex items-center justify-center mb-4">
-                    <CheckCircle className="w-6 h-6 text-[#e5e5e5]" />
+                <div className="w-12 h-12 rounded-xl bg-bg border border-border shadow-md flex items-center justify-center mb-4">
+                    <CheckCircle className="w-6 h-6 text-text-primary" />
                 </div>
-                <p className="text-sm font-medium uppercase tracking-wider text-[#e5e5e5]">Link created!</p>
-                <p className="text-xs font-semibold uppercase tracking-wider text-[#a3a3a3] mt-2">Redirecting…</p>
+                <p className="text-sm font-medium uppercase tracking-wider text-text-primary">Link created!</p>
+                <p className="text-xs font-semibold uppercase tracking-wider text-text-secondary mt-2">Redirecting…</p>
             </div>
         );
     }
@@ -80,11 +80,11 @@ export default function CreateLinkForm() {
     return (
         <form onSubmit={handleSubmit} className="space-y-6 max-w-xl">
             <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-[#a3a3a3] mb-2">
+                <label className="block text-xs font-bold uppercase tracking-widest text-text-secondary mb-2">
                     Link name <span className="text-[#ffffff]">*</span>
                 </label>
                 <div className="relative">
-                    <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#737373]" />
+                    <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
                     <input id="link-name" type="text" required value={form.name}
                         onChange={(e) => update("name", e.target.value)}
                         placeholder="e.g. YouTube Product Review"
@@ -93,11 +93,11 @@ export default function CreateLinkForm() {
             </div>
 
             <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-[#a3a3a3] mb-2">
+                <label className="block text-xs font-bold uppercase tracking-widest text-text-secondary mb-2">
                     Destination URL <span className="text-[#ffffff]">*</span>
                 </label>
                 <div className="relative">
-                    <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#737373]" />
+                    <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
                     <input id="destination-url" type="url" required value={form.destination_url}
                         onChange={(e) => update("destination_url", e.target.value)}
                         placeholder="https://youtube.com/watch?v=..."
@@ -106,41 +106,41 @@ export default function CreateLinkForm() {
             </div>
 
             <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-[#a3a3a3] mb-2">
-                    Custom slug <span className="text-[#737373] font-semibold">(optional)</span>
+                <label className="block text-xs font-bold uppercase tracking-widest text-text-secondary mb-2">
+                    Custom slug <span className="text-text-muted font-semibold">(optional)</span>
                 </label>
                 <div className="flex">
-                    <span className="px-3 py-3 bg-[#1c1c1c] border border-r-0 border-[#2b2b2b] rounded-l-lg text-xs font-bold text-[#a3a3a3] whitespace-nowrap flex items-center">
+                    <span className="px-3 py-3 bg-surface-hover border border-r-0 border-border rounded-l-lg text-xs font-bold text-text-secondary whitespace-nowrap flex items-center">
                         /r/
                     </span>
                     <div className="relative flex-1">
-                        <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#737373]" />
+                        <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
                         <input id="custom-slug" type="text" value={form.slug}
                             onChange={(e) => update("slug", e.target.value)}
                             placeholder="my-link"
                             className="input-base w-full pl-9 pr-3 py-3 text-sm rounded-l-none" />
                     </div>
                 </div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-[#737373] mt-2 flex items-center gap-1.5">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-text-muted mt-2 flex items-center gap-1.5">
                     <Wand2 className="w-3 h-3" /> Leave blank to auto-generate
                 </p>
             </div>
 
             <div>
                 <button type="button" id="utm-toggle" onClick={() => setShowUtm(!showUtm)}
-                    className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-widest text-[#ffffff] hover:text-[#e5e5e5] transition-colors">
+                    className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-widest text-[#ffffff] hover:text-text-primary transition-colors">
                     {showUtm ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     UTM parameters
                 </button>
                 {showUtm && (
-                    <div className="mt-4 grid grid-cols-3 gap-3 p-4 bg-[#1c1c1c] border border-solid border-[#262626] rounded-xl">
+                    <div className="mt-4 grid grid-cols-3 gap-3 p-4 bg-surface-hover border border-solid border-[#262626] rounded-xl">
                         {[
                             { key: "utm_source", label: "Source", placeholder: "instagram" },
                             { key: "utm_medium", label: "Medium", placeholder: "social" },
                             { key: "utm_campaign", label: "Campaign", placeholder: "spring-sale" },
                         ].map((f) => (
                             <div key={f.key}>
-                                <label className="block text-[9px] font-bold uppercase tracking-widest text-[#737373] mb-1.5">{f.label}</label>
+                                <label className="block text-[9px] font-bold uppercase tracking-widest text-text-muted mb-1.5">{f.label}</label>
                                 <input id={f.key} type="text" value={form[f.key as keyof typeof form]}
                                     onChange={(e) => update(f.key, e.target.value)}
                                     placeholder={f.placeholder}
@@ -152,7 +152,7 @@ export default function CreateLinkForm() {
             </div>
 
             {error && (
-                <p className="text-xs font-bold text-[#111111] bg-[#ef4444] border border-[#ef4444] rounded-lg px-3 py-2 shadow-md">
+                <p className="text-xs font-bold text-text-primary bg-[#ef4444] border border-[#ef4444] rounded-lg px-3 py-2 shadow-md">
                     {error}
                 </p>
             )}
