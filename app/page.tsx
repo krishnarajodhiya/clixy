@@ -46,11 +46,11 @@ export default function LandingPage() {
         <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
         <div className="w-full relative z-10 px-4">
-          <HeroText firstLine="LET'S TRACK" secondLine="YOUR CLICKS" />
+          <HeroText firstLine="LET'S TRACK" secondLine="YOUR AUDIENCE" />
         </div>
 
         <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mt-6 mb-10 leading-relaxed z-10 font-medium px-4">
-          Turn <span className="text-text-primary font-medium">Links into Insights</span> and <span className="text-text-primary font-medium">Clicks into Growth</span> — with powerful tracking analytics.
+          Turn <span className="text-text-primary font-medium">Links into Insights</span> and <span className="text-text-primary font-medium">Visitors into Growth</span> — with powerful tracking analytics.
         </p>
 
         <div className="z-10 relative group inline-block">
@@ -112,7 +112,7 @@ export default function LandingPage() {
         <div className="max-w-[1400px] mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-text-primary mb-6">Know your audience</h2>
           <p className="text-text-secondary text-lg max-w-2xl mx-auto mb-12">
-            Stop guessing where your clicks come from. Our analytics dashboard gives you
+            Stop guessing where your audience comes from. Our analytics dashboard gives you
             the full picture of your marketing efforts.
           </p>
           <div className="w-full max-w-4xl mx-auto bg-bg border border-border rounded-xl aspect-video shadow-2xl overflow-hidden flex items-center justify-center p-8">

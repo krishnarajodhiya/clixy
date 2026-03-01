@@ -7,7 +7,7 @@ import RecentClicks from "@/components/analytics/RecentClicks";
 import CopyButton from "@/components/links/CopyButton";
 import RefreshButton from "@/components/dashboard/RefreshButton";
 import { getPlatformFromReferrer } from "@/lib/utils";
-import { MousePointerClick, Smartphone, Globe, Monitor, ArrowLeft, ExternalLink } from "lucide-react";
+import { Users, Smartphone, Globe, Monitor, ArrowLeft, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { headers } from "next/headers";
 
@@ -80,7 +80,7 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
 
                 {/* Stats */}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    <StatsCard title="Total Clicks" value={totalClicks} icon={MousePointerClick} iconColor="text-blue-500" />
+                    <StatsCard title="Total Audience" value={totalClicks} icon={Users} iconColor="text-blue-500" />
                     <StatsCard title="Desktop" value={desktopClicks} icon={Monitor}
                         subtitle={totalClicks > 0 ? `${Math.round((desktopClicks / totalClicks) * 100)}%` : "—"} iconColor="text-green-500" />
                     <StatsCard title="Mobile" value={mobileClicks} icon={Smartphone}
@@ -122,7 +122,7 @@ export default async function LinkAnalyticsPage({ params }: { params: Promise<{ 
                 <div className="card rounded-xl border border-solid border-border bg-bg">
                     <div className="flex items-center justify-between gap-4 p-5 border-b border-solid border-border">
                         <p className="text-sm font-medium uppercase tracking-widest text-text-primary">
-                            Recent clicks <span className="text-text-muted ml-2">({Math.min(allClicks.length, 50)} of {totalClicks})</span>
+                            Recent visitors <span className="text-text-muted ml-2">({Math.min(allClicks.length, 50)} of {totalClicks})</span>
                         </p>
                         <RefreshButton />
                     </div>

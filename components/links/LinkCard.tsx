@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ExternalLink, BarChart3, Copy, CheckCheck, Trash2, Calendar, MousePointerClick } from "lucide-react";
+import { ExternalLink, BarChart3, Copy, CheckCheck, Trash2, Calendar, Users } from "lucide-react";
 import { Link as LinkType } from "@/types";
 import { formatDate } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
@@ -73,9 +73,9 @@ export default function LinkCard({ link, baseUrl }: LinkCardProps) {
             <div className="flex items-center justify-between mt-auto">
                 <div className="flex flex-col gap-1.5">
                     <div className="flex items-center gap-1.5 text-xs">
-                        <MousePointerClick className="w-4 h-4 text-text-primary" />
+                        <Users className="w-4 h-4 text-text-primary" />
                         <span className="font-medium text-text-primary text-sm">{link.click_count ?? 0}</span>
-                        <span className="font-bold uppercase tracking-widest text-text-secondary text-[10px]">clicks</span>
+                        <span className="font-bold uppercase tracking-widest text-text-secondary text-[10px]">visitors</span>
                     </div>
                 </div>
                 <div className="flex items-center gap-4">

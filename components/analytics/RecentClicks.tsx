@@ -7,7 +7,7 @@ export default function RecentClicks({ clicks }: { clicks: Click[] }) {
     if (!clicks || clicks.length === 0) {
         return (
             <div className="flex items-center justify-center p-12 text-text-secondary text-sm font-bold uppercase tracking-widest border border-solid border-[#262626] m-4 rounded-xl">
-                No clicks yet
+                No visitors yet
             </div>
         );
     }

@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import DashboardHeader from "@/components/dashboard/Header";
 import StatsCard from "@/components/dashboard/StatsCard";
 import Link from "next/link";
-import { Link2, MousePointerClick, Globe, Smartphone, Plus, ArrowRight } from "lucide-react";
+import { Link2, Users, Globe, Smartphone, Plus, ArrowRight } from "lucide-react";
 
 export default async function DashboardPage() {
     const supabase = await createClient();
@@ -34,7 +34,7 @@ export default async function DashboardPage() {
                 {/* Stats */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                     <StatsCard title="Total Links" value={totalLinks} icon={Link2} subtitle="Created" iconColor="text-blue-500" />
-                    <StatsCard title="Total Clicks" value={totalClicks} icon={MousePointerClick} subtitle="All links" iconColor="text-green-500" />
+                    <StatsCard title="Total Audience" value={totalClicks} icon={Users} subtitle="People reached" iconColor="text-green-500" />
                     <StatsCard title="Mobile" value={mobileClicks} icon={Smartphone}
                         subtitle={totalClicks > 0 ? `${Math.round((mobileClicks / totalClicks) * 100)}%` : "—"} iconColor="text-orange-500" />
                     <StatsCard title="Countries" value={uniqueCountries} icon={Globe} subtitle="Unique" iconColor="text-purple-500" />
@@ -55,7 +55,7 @@ export default async function DashboardPage() {
                                 <Link2 className="w-6 h-6 text-text-muted" />
                             </div>
                             <h3 className="text-base font-semibold text-text-primary mb-1">No links created yet</h3>
-                            <p className="text-sm text-text-secondary mb-6 max-w-sm">Create your first shortened link to start tracking clicks and geography.</p>
+                            <p className="text-sm text-text-secondary mb-6 max-w-sm">Create your first shortened link to start tracking your audience and geography.</p>
                             <Link href="/dashboard/links/create"
                                 className="btn-primary flex items-center gap-1.5 px-6 py-3 text-xs w-auto shadow-md hover:shadow-md">
                                 <Plus className="w-4 h-4" /> Create link
@@ -74,7 +74,7 @@ export default async function DashboardPage() {
                                     <div className="flex items-center gap-3 sm:gap-6">
                                         <div className="text-right">
                                             <p className="text-sm sm:text-base font-semibold text-text-primary">{link.click_count}</p>
-                                            <p className="text-[10px] sm:text-xs text-text-muted uppercase tracking-wider">clicks</p>
+                                            <p className="text-[10px] sm:text-xs text-text-muted uppercase tracking-wider">visitors</p>
                                         </div>
                                         <Link href={`/dashboard/links/${link.id}`}
                                             className="p-2 sm:p-2.5 rounded-xl bg-bg border border-border text-text-secondary hover:text-accent hover:border-accent shadow-sm transition-all sm:opacity-0 sm:-translate-x-2 group-hover:opacity-100 group-hover:translate-x-0">
