@@ -147,7 +147,7 @@ function InteractiveLetter({
     return (
         <span
             ref={spanRef}
-            className={`relative inline-block transition-all duration-100 ease-out text-7xl sm:text-8xl md:text-[8rem] lg:text-[11rem] xl:text-[13rem]`}
+            className={`relative inline-block transition-all duration-100 ease-out text-5xl sm:text-7xl md:text-[5.5rem] lg:text-[7.5rem] xl:text-[9.5rem]`}
             style={{
                 fontVariationSettings: `"wdth" ${width}, "wght" ${weight}`,
                 color: isContainerHovered ? PALETTE[colorIndex % PALETTE.length] : undefined,
