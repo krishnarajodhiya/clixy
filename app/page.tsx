@@ -53,11 +53,11 @@ export default function LandingPage() {
           Turn <span className="text-text-primary font-medium">Links into Insights</span> and <span className="text-text-primary font-medium">Clicks into Growth</span> — with powerful tracking analytics.
         </p>
 
-        <div className="z-10 relative group">
-          <div className="absolute inset-0 bg-white blur-xl opacity-10 group-hover:opacity-20 transition-opacity duration-500 rounded-full" />
+        <div className="z-10 relative group inline-block">
+          <div className="absolute inset-0 bg-white blur-xl opacity-10 group-hover:opacity-20 transition-opacity duration-500 rounded-full pointer-events-none" />
           <Link
             href="/signup"
-            className="flex items-center gap-2 px-8 py-4 bg-white hover:bg-surface dark:bg-surface-hover text-text-primary rounded-full font-medium text-lg transition-transform hover:scale-105 active:scale-95 tracking-wide shadow-lg"
+            className="relative z-10 flex items-center gap-2 px-8 py-4 bg-white hover:bg-surface dark:bg-surface-hover text-text-primary rounded-full font-medium text-lg transition-transform hover:scale-105 active:scale-95 tracking-wide shadow-lg"
           >
             Start Tracking Now
           </Link>
