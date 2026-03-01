@@ -12,11 +12,17 @@ export const metadata: Metadata = {
 
 import { ThemeProvider } from "@/components/ThemeProvider";
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={inter.variable} suppressHydrationWarning>
-      <body className="bg-bg text-text-primary antialiased selection:bg-accent selection:text-text-primary">
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+      <body className="bg-bg text-text-primary antialiased selection:bg-accent selection:text-text-primary overflow-x-hidden w-full">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           {children}
         </ThemeProvider>
       </body>

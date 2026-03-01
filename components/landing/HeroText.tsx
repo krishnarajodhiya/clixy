@@ -19,8 +19,19 @@ export default function HeroText({ firstLine, secondLine }: HeroTextProps) {
         const handleMouseMove = (e: MouseEvent) => {
             setMousePos({ x: e.clientX, y: e.clientY });
         };
+        const handleTouchMove = (e: TouchEvent) => {
+            if (e.touches.length > 0) {
+                setMousePos({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+            }
+        };
+
         window.addEventListener("mousemove", handleMouseMove);
-        return () => window.removeEventListener("mousemove", handleMouseMove);
+        window.addEventListener("touchmove", handleTouchMove, { passive: true });
+
+        return () => {
+            window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("touchmove", handleTouchMove);
+        };
     }, []);
 
     let characterCount = 0;
@@ -31,6 +42,13 @@ export default function HeroText({ firstLine, secondLine }: HeroTextProps) {
                 className="flex justify-center items-center leading-none uppercase tracking-tighter"
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
+                onTouchStart={(e) => {
+                    setIsHovering(true);
+                    if (e.touches.length > 0) {
+                        setMousePos({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+                    }
+                }}
+                onTouchEnd={() => setIsHovering(false)}
             >
                 {text.split("").map((char, i) => {
                     if (char === " ") return <span key={i} className="w-3 md:w-6 lg:w-10" />;
@@ -55,8 +73,13 @@ export default function HeroText({ firstLine, secondLine }: HeroTextProps) {
     return (
         <div
             ref={containerRef}
-            className={`${robotoFlex.className} flex flex-col items-center justify-center py-10 select-none cursor-default w-full text-text-primary transition-colors duration-500`}
+            className={`${robotoFlex.className} relative flex flex-col items-center justify-center py-10 select-none cursor-default w-full text-text-primary transition-colors duration-500`}
         >
+            {/* Mobile Interaction Badge */}
+            <div className="absolute -top-6 right-2 md:hidden animate-bounce flex items-center gap-1.5 bg-surface-hover/80 backdrop-blur-sm border border-border text-[11px] font-bold tracking-wider px-3 py-1.5 rounded-full text-text-primary shadow-lg z-20 pointer-events-none">
+                <span className="text-accent text-sm leading-none">✨</span> TOUCH ME
+            </div>
+
             {renderLine(firstLine)}
             {renderLine(secondLine)}
         </div>
